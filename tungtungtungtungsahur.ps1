@@ -121,7 +121,7 @@ function Write-FallbackFile() {
     mkdir $env:TEMP/Tung4Sahur -ErrorAction Ignore
     if ([int]((Get-Date).year) -lt 2025) {Failed-SyncTime $True}
     Set-Content $env:TEMP/Tung4Sahur/LASTSESSION (Get-Date)
-    exit(0)
+    exit 0
 }
 
 function DangerousTSReg() {
@@ -160,7 +160,7 @@ function Failed-SyncTime([boolean]$code) {
     Pause
     Write-Warning "按下ENTER键结束程序[2/2]"
     Pause
-    exit(-1)
+    exit -1
 }
 
 function Kill-WindowsUpdate () {
