@@ -272,6 +272,7 @@ function Restart-Explorer() {
 
 main;
 
-
+#所以应该不会有人真的在一体机看rxxx34吧...
+#总之记得报修 这程序只是个临时解决方案
 
 
