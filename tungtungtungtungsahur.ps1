@@ -81,6 +81,8 @@ $delays = $需要填充一个正整数
 # 默认值: time.windows.com
 $NTP= $需要填充的内容
 
+#不要动
+$DEBUG = $False;
 
 
 #----------------------------------代码部分-----------------------------------------------
@@ -88,7 +90,6 @@ $NTP= $需要填充的内容
 
 # $MAX = -1
 $MAX = 0xFFFFFFFF;
-$DEBUG = $True;
 $NewLine = ([Environment]::NewLine);
 # [删除] 为了防止Get-Service的状态显示可能含有本地化情况所以采用数字
 #$ServiceIsStopped = 1
