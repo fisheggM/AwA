@@ -141,7 +141,7 @@ function Read-FallbackFile() {
     if (!$?) {Failed-SyncTime $False;}
     $FDate = Get-Content $env:TEMP/Tung4Sahur/LASTSESSION
     Start-Transaction -RollbackPreference Never;
-    Set-Date $FDateget
+    Set-Date $FDate
     if ([int]((Get-Date).year) -lt 2025) {Undo-Transaction;Failed-SyncTime $True;}
     Complete-Transaction;
     return;
