@@ -1,18 +1,18 @@
-#·ÀÖ¹ Ô¶ ¹Å Powershell 3.0 ÔËĞĞ ¸Ã ½Å±¾
+#é˜²æ­¢ è¿œ å¤ Powershell 3.0 è¿è¡Œ è¯¥ è„šæœ¬
 ########################################
 #Requires -Version 4.0
 ########################################
 <#
-    @Made by: Fails¡¢ [REDACTED]¡¢[DELETED]
-    @°æ±¾×´Ì¬: PRE-PRE-PRE-PRE-BETA
-    @²âÊÔÕß:YOUYOUYOU
-    @Î»ÖÃ£ºhttps://raw.githubusercontent.com/fisheggM/AwA/refs/heads/main/tungtungtungtungsahur.ps1
-    @²¹¶¡ÄÚÈİ: Tungtungtungtung sahur
-    @ĞèÒªÈ¨ÏŞ: ¹ÜÀíÔ±¼¶
-    @±£´æ·½Ê½£ºÒÔGB18030±àÂëÇÒÎ´ÊÜĞŞ¸ÄµÄ·½Ê½±£´æ£¨Ë«¹Ø£¿£©
-    @Ê¹ÓÃÇ°µÄÌáĞÑ£º
-        [01]Èç¹ûÄú¿ªÆôÁË×İÔÆÌİ¡¢Ä§·¨Ã¨ßä¡¢Æß¸ù¹÷×ÓµÈ¿ÉÒÔ·ÃÎÊXX34.XXXµÄ¹¤¾ß£¬Çë¹Ø±Õ¡£
-        [02]²»±£Ö¤³É¹¦£¬Ò²²»±£Ö¤Ê§°Ü¡£
+    @Made by: Failsã€ [REDACTED]ã€[DELETED]
+    @ç‰ˆæœ¬çŠ¶æ€: PRE-PRE-PRE-PRE-BETA
+    @æµ‹è¯•è€…:YOUYOUYOU
+    @ä½ç½®ï¼šhttps://raw.githubusercontent.com/fisheggM/AwA/refs/heads/main/tungtungtungtungsahur.ps1
+    @è¡¥ä¸å†…å®¹: Tungtungtungtung sahur
+    @éœ€è¦æƒé™: ç®¡ç†å‘˜çº§
+    @ä¿å­˜æ–¹å¼ï¼šä»¥GB18030ç¼–ç ä¸”æœªå—ä¿®æ”¹çš„æ–¹å¼ä¿å­˜ï¼ˆåŒå…³ï¼Ÿï¼‰
+    @ä½¿ç”¨å‰çš„æé†’ï¼š
+        [01]å¦‚æœæ‚¨å¼€å¯äº†çºµäº‘æ¢¯ã€é­”æ³•çŒ«å’ªã€ä¸ƒæ ¹æ£å­ç­‰å¯ä»¥è®¿é—®XX34.XXXçš„å·¥å…·ï¼Œè¯·å…³é—­ã€‚
+        [02]ä¸ä¿è¯æˆåŠŸï¼Œä¹Ÿä¸ä¿è¯å¤±è´¥ã€‚
     @???:
         data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAYAAABccqhmAAAACXBIWXMAAA7EAAAOxAGVKw4bAAADm0lEQVR42u3coUoEQRjAcUcOLIJNBNNd3GTRqCgYbIYLPoNdH0K7z2C4YDMIJ1ZFMG3UJIhNuGIaH8Bg+Fhm1/n9+nB7s8efuTBfyjkvAXVatgUgAIAAAAIACAAgAIAAAAIACAAgAIAAAAIACAAgAIAAAH01sgV1SykVHQiRc07eghMAIACAAAACAAgAIACAAAACAAgAIACAAAACAAgAIACAAAC/mAcQVPo+fdTpfGvQ+2eegBMAIACAAAACAAgAIACAAAACAAgACIAtAAEABAAQAEAAAAEA/qnq5wFE76OXvk9/dfASWv/c7hZ9/tN52fdX+zwBJwAQAEAAAAEABAAQAEAAAAEABAAQAEAAAAEABAAQAEAAgN5KOee6NyB4nzzqaP0stH58fVd0/95ODkPrbz8viz6/eQCAAAACAAgAIACAAAACAAgAIACAAAACAAgAIACAAAACAPSUeQDBeQDR+/z73w+h9fcre0X3r/TzR+cJmAcACAAgAIAAAAIACAAgAIAAAAIACAAgAIAAAAIACAAgAEBPDX4eQPQ+/8XaTujzz45XQ+vfnj78CgNm77H9P/96DK0f+jwBJwDwFwAQAEAAAAEABAAQAEAAAAEABAAQAEAAAAEABAAQAKC3qp8H8No0g/7+4+2N0PrS8whKP/+kbUPrzQMABAAQAEAAAAEABAAQAEAAAAEABAAQAEAAAAEABAAQAKAjI1sQU/o+++XNIrR+ull2/4b+/E4AgAAAAgAIACAAgAAAAgAIACAAgAAAAgAIACAAgAAAAgB0xDyAoNL32aebCy8BJwBAAAABAAQAEABAAAABAAQAEAAQAEAAAAEABAAQAEAAgP8n5Zzr3oCUQhvw2jShz5+9r1a9/9F5BpO2Da3POScnAEAAAAEABAAQAEAAAAEABAAQAEAAAAEABAAQAEAAAAEAeqj6eQDhDax8noD7/E4AgAAAAgAIACAAgAAAAgAIACAAgAAAAgAIACAAgAAAAgB0wjyA0i+g8DyBKPf5nQAAAQAEABAAQAAAAQAEABAAQAAAAQAEABAAQAAAAQAEAOiEeQBDf4HBeQJR7vM7AQACAAgAIACAAAACAAgAIACAAAACAAgAIACAAAACAAgA0AnzAMAJABAAQAAAAQAEABAAQAAAAQAEABAAQAAAAQAEABAAQAAAAQAEABAAQAAAAQAEABAAQAAAAQAEABAAQAAAAQAEABAAQACAv/0A1EeQhbwEqXMAAAAASUVORK5CYII=
 
@@ -21,80 +21,80 @@
 
 
 
-    @ Ğ­Òé:
-                                                                                                                                 ×î  ÖÕ  ÓÃ  »§  Ğí  ¿É  Ğ­  Òé
-    1. ¶¨Òå:
-        Èí¼ş£ºÖ¸Tungtungtungsahur.ps1 »ò Èí¼şÄÚÈİ°üº¬´ËĞ­ÒéµÄÈÎºÎ½Å±¾ºÍ/»òÈí¼ş¡£
-        ÓÃ»§£ºÖ¸Äú»ò¸ÃÈí¼şµÄÊ¹ÓÃÕß¡¢ÓÃ»§ºÍ/»ò×îÖÕÓÃ»§¡£
-        Ğí¿É£ºÖ¸Fails¡¢[REDACTED]¡¢[DELETED]ÊÚÓèÓÃ»§µÄ·Ç¶ÀÕ¼¡¢²»¿É×ªÈÃ¡¢¿É³·ÏúµÄĞí¿É¡£
-        ĞŞ¸Ä£ºÒ»¸ö×÷Æ·ÊÇÖ¸ÒÔĞèÒª°æÈ¨Ğí¿ÉµÄ·½Ê½¶Ô×÷Æ·µÄÈ«²¿»ò²¿·Ö½øĞĞ¸´ÖÆ»òÕß¸Ä±à£¬ÓĞ±ğÓÚÖÆ×÷Ò»ÖÂµÄ¸±±¾¡£Ëù²úÉúµÄ×÷Æ·³ÆÎªÇ°×÷µÄĞŞ¸Ä°æ»ò»ùÓÚÇ°×÷µÄ×÷Æ·¡£
-        ´«²¥£ºÖ¸³ıÔÚ¼ÆËã»úÉÏÖ´ĞĞ»òÕßĞŞ¸ÄË½ÓĞ¸±±¾ÒÔÍâ£¬¸ù¾İËùÊÊÓÃµÄ°æÈ¨·¨ÂÉ£¬Ö»ÒªÎ´¾­Ğí¿ÉÊµÊ©¾Í»áÊ¹Äã³Ğµ£Ö±½Ó»ò¼ä½ÓÇÖÈ¨ÔğÈÎµÄÈÎºÎĞĞÎª¡£´«²¥°üÀ¨¸´ÖÆ¡¢·Ö·¢£¨ÎŞÂÛĞŞ¸ÄÓë·ñ£©¡¢Ïò¹«ÖÚÌá¹©¡¢ÒÔ¼°ÔÚÒ»Ğ©¹ú¼ÒµÄÆäËûĞĞÎª¡£
-        ×ª·¢£ºÖ¸ÈÎºÎÒ»ÖÖ¿ÉÒÔÊ¹ÆäËû·½ÖÆ×÷»ò½ÓÊÕ¸ÃÈí¼ş¸±±¾µÄ´«²¥ĞĞÎª¡£½ö½öÍ¨¹ı¼ÆËã»úÍøÂçÓëÓÃ»§½øĞĞ½»»¥£¬¶øÃ»ÓĞ´«ÊäÈÎºÎ¸±±¾µÄĞĞÎª²»ÊôÓÚ×ª·¢¡£
-        Ô´´úÂë£ºÖ¸¶Ô×÷Æ·½øĞĞĞŞ¸ÄËùÊ×Ñ¡µÄ×÷Æ·ĞÎÊ½¡£
-        Ä¿±ê´úÂë£ºÖ¸×÷Æ·µÄÈÎºÎ·ÇÔ´´úÂëĞÎÊ½¡£2
-    2. Ğí¿ÉÊÚÓè£º
-        2.1 Fails¡¢[REDACTED]¡¢[DELETED]ÊÚÓèÄúÒ»¸ö¸öÈË¡¢·Ç¶ÀÕ¼¡¢²»¿É×ªÈÃ¡¢¿É³·ÏúµÄĞí¿É£¬ÒÔÊ¹ÓÃÈí¼ş£¬½öÏŞÓÚ·ÇÉÌÒµÄ¿µÄ¡£
-        2.2 Äú²»µÃ³öÊÛ¡¢³ö×â¡¢³ö½è¡¢×ªÈÃ»òÒÔÆäËû·½Ê½·ÖÅäÈí¼ş»òÆäÈÎºÎ²¿·Ö¡£
-    3. Ê¹ÓÃÏŞÖÆ£º
-        3.1 Äú¿ÉÒÔ¶ÔÈí¼ş½øĞĞ·´Ïò¹¤³Ì¡¢·´±àÒë»òÊÔÍ¼ÒÔÈÎºÎ·½Ê½·¢ÏÖÈí¼şµÄÔ´´úÂë£¬³ı·Ç·¨ÂÉ½ûÖ¹£¬µ«Äú²»¿ÉÒÔ¶ÔÈí¼şÔ´´úÂë×öÒÔÏÂĞŞ¸Ä²¢¶ş´Î·Ö·¢: ¼Ó¿Ç¡¢¼ÓÃÜÈí¼şÔ´´úÂë¡¢Î´¾­ÔÊĞíµÄÓÚ·Ç±¾µØ¾ÖÓòÍøÖĞ´«²¥Ô´´úÂë¡£
-        3.2 ÔÚÃ»ÓĞ¾­¹ı°æÈ¨Ğí¿ÉÏÂ£¬¸ÃĞ­Òé²»¿É±»ĞŞ¸Ä¡£
-    4. Ğí¿É·ÑÓÃËµÃ÷£º
-        4.1 ±¾Èí¼şÊÇÃâ·ÑÌá¹©¸øÓÃ»§¡£
-    5. ÔğÈÎ»®¶¨£º
-        5.1 Fails¡¢[REDACTED]¡¢[DELETED] ²»Ìá¹©ÈÎºÎĞÎÊ½µÄ±£Ö¤£¬°üÀ¨µ«²»ÏŞÓÚÊÊÏúĞÔ¡¢ÌØ¶¨ÓÃÍ¾µÄÊÊÓÃĞÔ»ò²»ÇÖÈ¨µÄ±£Ö¤¡£
-        5.2 ÔÚÈÎºÎÇé¿öÏÂ£¬Fails¡¢[REDACTED]¡¢[DELETED] ¶ÔÒòÊ¹ÓÃ»òÎŞ·¨Ê¹ÓÃÈí¼ş¶øÒıÆğµÄÈÎºÎÖ±½Ó¡¢¼ä½Ó¡¢¸½´ø¡¢ÌØÊâ¡¢³Í·£ĞÔ»òºó¹ûĞÔËğº¦£¨µçÄÔÌ±»¾¡¢ËÀ»ú¡¢À¶ÆÁ¡¢ÄÚºË¿Ö»Å¡¢ÎŞ·¨ÔËĞĞ¸Ã³ÌĞò)£¬¾ù²»³Ğµ£ÔğÈÎ¡£
-    6. Ğí¿ÉÖÕÖ¹£º
-        6.1 ÈÎºÎÎ¥·´±¾Ğ­ÒéµÄÈÎºÎÌõ¿îFails¡¢[REDACTED]¡¢[DELETED] ¶¼ÓĞÈ¨Á¢¼´ÖÕÖ¹±¾Ğí¿É¡£
-        6.2 ÖÕÖ¹±¾Ğí¿Éºó£¬Äú±ØĞëÍ£Ö¹Ê¹ÓÃÈí¼ş²¢Ïú»ÙËùÓĞÈí¼ş¸±±¾¡£
-    7. ·¨ÂÉ¹ÜÏ½ÓëÕùÒé½â¾ö
-        7.1 ±¾Ğ­ÒéÊÜÖĞ¹ú/ÖĞ¹úÏã¸Û¹ÜÏ½²¢°´ÕÕ¸Ã·¨ÂÉ½âÊÍ¡£
-        7.2 ÈÎºÎÓë±¾Ğ­ÒéÓĞ¹ØµÄÕùÒé£¬Fails¡¢[REDACTED]¡¢[DELETED]ÓµÓĞ×îÖÕµÄ½âÊÍÈ¨¡£
-    8. ÍêÕûĞ­Òé:
-        8.1 ±¾Ğ­Òé¹¹³ÉË«·½¹ØÓÚÈí¼şĞí¿ÉµÄÈ«²¿Ğ­Òé£¬²¢È¡´úËùÓĞÏÈÇ°µÄÊéÃæ»ò¿ÚÍ·Ğ­ÒéºÍÀí½â¡£
-    9. ÆäËû
-        9.1 ±¾Ğ­ÒéÖĞµÄ±êÌâ½öÎª·½±ã²Î¿¼£¬²»¹¹³É±¾Ğ­ÒéµÄÒ»²¿·Ö¡£
-    10. ĞŞÕıÄÚÈİ
-        10.1 ±¾Ğ­ÒéÃ»ÓĞ·¨ÂÉĞ§Ó¦£¬½öÎª¾ı×ÓĞ­Òé¡£
+    @ åè®®:
+                                                                                                                                 æœ€  ç»ˆ  ç”¨  æˆ·  è®¸  å¯  å  è®®
+    1. å®šä¹‰:
+        è½¯ä»¶ï¼šæŒ‡Tungtungtungsahur.ps1 æˆ– è½¯ä»¶å†…å®¹åŒ…å«æ­¤åè®®çš„ä»»ä½•è„šæœ¬å’Œ/æˆ–è½¯ä»¶ã€‚
+        ç”¨æˆ·ï¼šæŒ‡æ‚¨æˆ–è¯¥è½¯ä»¶çš„ä½¿ç”¨è€…ã€ç”¨æˆ·å’Œ/æˆ–æœ€ç»ˆç”¨æˆ·ã€‚
+        è®¸å¯ï¼šæŒ‡Failsã€[REDACTED]ã€[DELETED]æˆäºˆç”¨æˆ·çš„éç‹¬å ã€ä¸å¯è½¬è®©ã€å¯æ’¤é”€çš„è®¸å¯ã€‚
+        ä¿®æ”¹ï¼šä¸€ä¸ªä½œå“æ˜¯æŒ‡ä»¥éœ€è¦ç‰ˆæƒè®¸å¯çš„æ–¹å¼å¯¹ä½œå“çš„å…¨éƒ¨æˆ–éƒ¨åˆ†è¿›è¡Œå¤åˆ¶æˆ–è€…æ”¹ç¼–ï¼Œæœ‰åˆ«äºåˆ¶ä½œä¸€è‡´çš„å‰¯æœ¬ã€‚æ‰€äº§ç”Ÿçš„ä½œå“ç§°ä¸ºå‰ä½œçš„ä¿®æ”¹ç‰ˆæˆ–åŸºäºå‰ä½œçš„ä½œå“ã€‚
+        ä¼ æ’­ï¼šæŒ‡é™¤åœ¨è®¡ç®—æœºä¸Šæ‰§è¡Œæˆ–è€…ä¿®æ”¹ç§æœ‰å‰¯æœ¬ä»¥å¤–ï¼Œæ ¹æ®æ‰€é€‚ç”¨çš„ç‰ˆæƒæ³•å¾‹ï¼Œåªè¦æœªç»è®¸å¯å®æ–½å°±ä¼šä½¿ä½ æ‰¿æ‹…ç›´æ¥æˆ–é—´æ¥ä¾µæƒè´£ä»»çš„ä»»ä½•è¡Œä¸ºã€‚ä¼ æ’­åŒ…æ‹¬å¤åˆ¶ã€åˆ†å‘ï¼ˆæ— è®ºä¿®æ”¹ä¸å¦ï¼‰ã€å‘å…¬ä¼—æä¾›ã€ä»¥åŠåœ¨ä¸€äº›å›½å®¶çš„å…¶ä»–è¡Œä¸ºã€‚
+        è½¬å‘ï¼šæŒ‡ä»»ä½•ä¸€ç§å¯ä»¥ä½¿å…¶ä»–æ–¹åˆ¶ä½œæˆ–æ¥æ”¶è¯¥è½¯ä»¶å‰¯æœ¬çš„ä¼ æ’­è¡Œä¸ºã€‚ä»…ä»…é€šè¿‡è®¡ç®—æœºç½‘ç»œä¸ç”¨æˆ·è¿›è¡Œäº¤äº’ï¼Œè€Œæ²¡æœ‰ä¼ è¾“ä»»ä½•å‰¯æœ¬çš„è¡Œä¸ºä¸å±äºè½¬å‘ã€‚
+        æºä»£ç ï¼šæŒ‡å¯¹ä½œå“è¿›è¡Œä¿®æ”¹æ‰€é¦–é€‰çš„ä½œå“å½¢å¼ã€‚
+        ç›®æ ‡ä»£ç ï¼šæŒ‡ä½œå“çš„ä»»ä½•éæºä»£ç å½¢å¼ã€‚2
+    2. è®¸å¯æˆäºˆï¼š
+        2.1 Failsã€[REDACTED]ã€[DELETED]æˆäºˆæ‚¨ä¸€ä¸ªä¸ªäººã€éç‹¬å ã€ä¸å¯è½¬è®©ã€å¯æ’¤é”€çš„è®¸å¯ï¼Œä»¥ä½¿ç”¨è½¯ä»¶ï¼Œä»…é™äºéå•†ä¸šç›®çš„ã€‚
+        2.2 æ‚¨ä¸å¾—å‡ºå”®ã€å‡ºç§Ÿã€å‡ºå€Ÿã€è½¬è®©æˆ–ä»¥å…¶ä»–æ–¹å¼åˆ†é…è½¯ä»¶æˆ–å…¶ä»»ä½•éƒ¨åˆ†ã€‚
+    3. ä½¿ç”¨é™åˆ¶ï¼š
+        3.1 æ‚¨å¯ä»¥å¯¹è½¯ä»¶è¿›è¡Œåå‘å·¥ç¨‹ã€åç¼–è¯‘æˆ–è¯•å›¾ä»¥ä»»ä½•æ–¹å¼å‘ç°è½¯ä»¶çš„æºä»£ç ï¼Œé™¤éæ³•å¾‹ç¦æ­¢ï¼Œä½†æ‚¨ä¸å¯ä»¥å¯¹è½¯ä»¶æºä»£ç åšä»¥ä¸‹ä¿®æ”¹å¹¶äºŒæ¬¡åˆ†å‘: åŠ å£³ã€åŠ å¯†è½¯ä»¶æºä»£ç ã€æœªç»å…è®¸çš„äºéæœ¬åœ°å±€åŸŸç½‘ä¸­ä¼ æ’­æºä»£ç ã€‚
+        3.2 åœ¨æ²¡æœ‰ç»è¿‡ç‰ˆæƒè®¸å¯ä¸‹ï¼Œè¯¥åè®®ä¸å¯è¢«ä¿®æ”¹ã€‚
+    4. è®¸å¯è´¹ç”¨è¯´æ˜ï¼š
+        4.1 æœ¬è½¯ä»¶æ˜¯å…è´¹æä¾›ç»™ç”¨æˆ·ã€‚
+    5. è´£ä»»åˆ’å®šï¼š
+        5.1 Failsã€[REDACTED]ã€[DELETED] ä¸æä¾›ä»»ä½•å½¢å¼çš„ä¿è¯ï¼ŒåŒ…æ‹¬ä½†ä¸é™äºé€‚é”€æ€§ã€ç‰¹å®šç”¨é€”çš„é€‚ç”¨æ€§æˆ–ä¸ä¾µæƒçš„ä¿è¯ã€‚
+        5.2 åœ¨ä»»ä½•æƒ…å†µä¸‹ï¼ŒFailsã€[REDACTED]ã€[DELETED] å¯¹å› ä½¿ç”¨æˆ–æ— æ³•ä½¿ç”¨è½¯ä»¶è€Œå¼•èµ·çš„ä»»ä½•ç›´æ¥ã€é—´æ¥ã€é™„å¸¦ã€ç‰¹æ®Šã€æƒ©ç½šæ€§æˆ–åæœæ€§æŸå®³ï¼ˆç”µè„‘ç˜«ç—ªã€æ­»æœºã€è“å±ã€å†…æ ¸ææ…Œã€æ— æ³•è¿è¡Œè¯¥ç¨‹åº)ï¼Œå‡ä¸æ‰¿æ‹…è´£ä»»ã€‚
+    6. è®¸å¯ç»ˆæ­¢ï¼š
+        6.1 ä»»ä½•è¿åæœ¬åè®®çš„ä»»ä½•æ¡æ¬¾Failsã€[REDACTED]ã€[DELETED] éƒ½æœ‰æƒç«‹å³ç»ˆæ­¢æœ¬è®¸å¯ã€‚
+        6.2 ç»ˆæ­¢æœ¬è®¸å¯åï¼Œæ‚¨å¿…é¡»åœæ­¢ä½¿ç”¨è½¯ä»¶å¹¶é”€æ¯æ‰€æœ‰è½¯ä»¶å‰¯æœ¬ã€‚
+    7. æ³•å¾‹ç®¡è¾–ä¸äº‰è®®è§£å†³
+        7.1 æœ¬åè®®å—ä¸­å›½/ä¸­å›½é¦™æ¸¯ç®¡è¾–å¹¶æŒ‰ç…§è¯¥æ³•å¾‹è§£é‡Šã€‚
+        7.2 ä»»ä½•ä¸æœ¬åè®®æœ‰å…³çš„äº‰è®®ï¼ŒFailsã€[REDACTED]ã€[DELETED]æ‹¥æœ‰æœ€ç»ˆçš„è§£é‡Šæƒã€‚
+    8. å®Œæ•´åè®®:
+        8.1 æœ¬åè®®æ„æˆåŒæ–¹å…³äºè½¯ä»¶è®¸å¯çš„å…¨éƒ¨åè®®ï¼Œå¹¶å–ä»£æ‰€æœ‰å…ˆå‰çš„ä¹¦é¢æˆ–å£å¤´åè®®å’Œç†è§£ã€‚
+    9. å…¶ä»–
+        9.1 æœ¬åè®®ä¸­çš„æ ‡é¢˜ä»…ä¸ºæ–¹ä¾¿å‚è€ƒï¼Œä¸æ„æˆæœ¬åè®®çš„ä¸€éƒ¨åˆ†ã€‚
+    10. ä¿®æ­£å†…å®¹
+        10.1 æœ¬åè®®æ²¡æœ‰æ³•å¾‹æ•ˆåº”ï¼Œä»…ä¸ºå›å­åè®®ã€‚
     
 
 #>
 
-#----------------------------£¨²»Òª¸ÄÏÂÃæµÄÈÎºÎÄÚÈİ£©±äÃû×Ö----------------------------
-$ĞèÒªÌî³äµÄÄÚÈİ = $null
-$ĞèÒªÌî³äÒ»¸öÕıÕûÊı = $nul
+#----------------------------ï¼ˆä¸è¦æ”¹ä¸‹é¢çš„ä»»ä½•å†…å®¹ï¼‰å˜åå­—----------------------------
+$éœ€è¦å¡«å……çš„å†…å®¹ = $null
+$éœ€è¦å¡«å……ä¸€ä¸ªæ­£æ•´æ•° = $null
 
-#-----------------------------------¿ÉĞŞ¸ÄµÄÅäÖÃ------------------------------------------
-#ÍøÂç¼ìÑéÖÜÆÚ£¬Ô½´óÔ½ÎÈµ«½áÊøµÃÔ½Âı
-#Ä¬ÈÏÖµ:10
-$retries = $ĞèÒªÌî³äÒ»¸öÕıÕûÊı
+#-----------------------------------å¯ä¿®æ”¹çš„é…ç½®------------------------------------------
+#ç½‘ç»œæ£€éªŒå‘¨æœŸï¼Œè¶Šå¤§è¶Šç¨³ä½†ç»“æŸå¾—è¶Šæ…¢
+#é»˜è®¤å€¼:10
+$retries = $éœ€è¦å¡«å……ä¸€ä¸ªæ­£æ•´æ•°
 
-#ÍøÂç¼ìÑéµÄËÙ¶È£¬Ô½´óÔ½ÎÈµ«Ö´ĞĞÊ±¼äÉÏÔ½Âı
-#Ä¬ÈÏÖµ:3
-$delays = $ĞèÒªÌî³äÒ»¸öÕıÕûÊı
-
-
+#ç½‘ç»œæ£€éªŒçš„é€Ÿåº¦ï¼Œè¶Šå¤§è¶Šç¨³ä½†æ‰§è¡Œæ—¶é—´ä¸Šè¶Šæ…¢
+#é»˜è®¤å€¼:3
+$delays = $éœ€è¦å¡«å……ä¸€ä¸ªæ­£æ•´æ•°
 
 
 
-#ÌîĞ´NTPÍøÕ¾:Èç(time.windows.com)£¬²»ĞèÒª¼Óhttps://»òhttp://»òws://»òquic://µÈÈÎºÎĞ­ÒéÍ·
-# ²»ÄÜÊÇURL Scheme£¨Èç¹ûÄú²»ÖªµÀÊ²Ã´ÊÇURL Scheme¿ÉÒÔºöÂÔ)
-# Ä¬ÈÏÖµ: time.windows.com
-$NTP= $ĞèÒªÌî³äµÄÄÚÈİ
+
+
+#å¡«å†™NTPç½‘ç«™:å¦‚(time.windows.com)ï¼Œä¸éœ€è¦åŠ https://æˆ–http://æˆ–ws://æˆ–quic://ç­‰ä»»ä½•åè®®å¤´
+# ä¸èƒ½æ˜¯URL Schemeï¼ˆå¦‚æœæ‚¨ä¸çŸ¥é“ä»€ä¹ˆæ˜¯URL Schemeå¯ä»¥å¿½ç•¥)
+# é»˜è®¤å€¼: time.windows.com
+$NTP= $éœ€è¦å¡«å……çš„å†…å®¹
 
 
 
-#----------------------------------´úÂë²¿·Ö-----------------------------------------------
-# »ù´¡»·¾³
+#----------------------------------ä»£ç éƒ¨åˆ†-----------------------------------------------
+# åŸºç¡€ç¯å¢ƒ
 
 # $MAX = -1
 $MAX = 0xFFFFFFFF;
 $DEBUG = $True;
 $NewLine = ([Environment]::NewLine);
-# [É¾³ı] ÎªÁË·ÀÖ¹Get-ServiceµÄ×´Ì¬ÏÔÊ¾¿ÉÄÜº¬ÓĞ±¾µØ»¯Çé¿öËùÒÔ²ÉÓÃÊı×Ö
+# [åˆ é™¤] ä¸ºäº†é˜²æ­¢Get-Serviceçš„çŠ¶æ€æ˜¾ç¤ºå¯èƒ½å«æœ‰æœ¬åœ°åŒ–æƒ…å†µæ‰€ä»¥é‡‡ç”¨æ•°å­—
 #$ServiceIsStopped = 1
 #$ServiceIsRunning = 4
-# ¶àÂÇÁË...
-# [WARN] SwitchÓĞBUG...
+# å¤šè™‘äº†...
+# [WARN] Switchæœ‰BUG...
 $ServiceIsStopped = "Stopped"
 $ServiceIsRunning = "Running"
 
@@ -104,11 +104,11 @@ function Set-Title ( [string] $title ) {$host.UI.RawUI.WindowTitle = $title;}
 function Fuck-Proxy() {Get-Process "Clash for Windows" -ErrorAction Ignore;if ($?) {Start-Process "clash://quit"};}
 
 # Write-Host-But-Nothing
-# ×÷ÓÃ£º¿ÕÒ»ĞĞ ¡£
+# ä½œç”¨ï¼šç©ºä¸€è¡Œ ã€‚
 function whbn() {Write-Host $null;}
 
 #Write-Host-Echo-with-Point
-# ×÷ÓÃ£ºÍ¬ECHO. ¡£
+# ä½œç”¨ï¼šåŒECHO. ã€‚
 function whep() {Write-Host $NewLine;}
 
 function CleanDNS() {ipconfig /flushdns;ipconfig /registerdns;return;}
@@ -135,7 +135,7 @@ function DangerousTSReg() {
 }
 
 function Read-FallbackFile() {
-    Write-Warning "ÆôÓÃ±¸ÓÃ¼Æ»®¡£"
+    Write-Warning "å¯ç”¨å¤‡ç”¨è®¡åˆ’ã€‚"
     Get-Content $env:TEMP/Tung4Sahur/LASTSESSION
     if (!$?) {Failed-SyncTime $False;}
     $FDate = Get-Content $env:TEMP/Tung4Sahur/LASTSESSION
@@ -148,16 +148,16 @@ function Read-FallbackFile() {
 
 function Failed-SyncTime([boolean]$code) {
     if (!$code) {
-    Write-Warning "ÎŞ·¨ÕÒµ½±¸·İÎÄ¼ş£¡Ö±½ÓÍ¬²½Ê±¼äÖÁ2025Äê"
+    Write-Warning "æ— æ³•æ‰¾åˆ°å¤‡ä»½æ–‡ä»¶ï¼ç›´æ¥åŒæ­¥æ—¶é—´è‡³2025å¹´"
     }
     else {
-         Write-Warning "±¸·İÎÄ¼şÓĞÎó!"
+         Write-Warning "å¤‡ä»½æ–‡ä»¶æœ‰è¯¯!"
     }
     Set-Date 2025/01/01
-    Write-Warning "ÇëÊÖ¶¯Î¢µ÷Ê±¼ä!"
-    Write-Warning "°´ÏÂENTER¼ü½áÊø³ÌĞò[1/2]"
+    Write-Warning "è¯·æ‰‹åŠ¨å¾®è°ƒæ—¶é—´!"
+    Write-Warning "æŒ‰ä¸‹ENTERé”®ç»“æŸç¨‹åº[1/2]"
     Pause
-    Write-Warning "°´ÏÂENTER¼ü½áÊø³ÌĞò[2/2]"
+    Write-Warning "æŒ‰ä¸‹ENTERé”®ç»“æŸç¨‹åº[2/2]"
     Pause
     exit(-1)
 }
@@ -165,9 +165,9 @@ function Failed-SyncTime([boolean]$code) {
 function Kill-WindowsUpdate () {
     whep;
     Write-Host "--------------------";
-    Write-Host "½áÊø";
+    Write-Host "ç»“æŸ";
     whbn;
-    Write-Host "³¢ÊÔÍ£Ö¹Windows Update·şÎñ......."
+    Write-Host "å°è¯•åœæ­¢Windows UpdateæœåŠ¡......."
     Write-Host "--------------------";
     whep;
     Stop-Service wuauserv
@@ -176,8 +176,8 @@ function Kill-WindowsUpdate () {
             $ServiceIsStopped {
                 whep;
                 echo --------------------
-                # ´ºÇï±Ê·¨(?)
-                Write-Host "Windows UpdateÒÑ±»¹Ø±Õ" -ForegroundColor Green
+                # æ˜¥ç§‹ç¬”æ³•(?)
+                Write-Host "Windows Updateå·²è¢«å…³é—­" -ForegroundColor Green
                 echo --------------------
                 whep
             }
@@ -185,15 +185,15 @@ function Kill-WindowsUpdate () {
                 whep
                 echo --------------------
                 Pause
-                Write-Warning "Windows Update·şÎñÎŞ·¨¹Ø±Õ£¡"
+                Write-Warning "Windows UpdateæœåŠ¡æ— æ³•å…³é—­ï¼"
                 echo --------------------
                 whep
             }
         }
     }
     else {
-        # Õı³£À´Ëµµ½²»ÁËÕâÀï
-        Write-Warning " Ã»ÓĞÈ¨ÏŞ¡¢»òÎŞ·¨¶ÁÈ¡·şÎñ"
+        # æ­£å¸¸æ¥è¯´åˆ°ä¸äº†è¿™é‡Œ
+        Write-Warning " æ²¡æœ‰æƒé™ã€æˆ–æ— æ³•è¯»å–æœåŠ¡"
     }
 }
 
@@ -207,8 +207,8 @@ function TimeSync() {
     #########################
     whep;
     Write-Host --------------------
-    Write-Host ½áÊø
-    Write-Host ³¢ÊÔÁªÍøÍ¬²½Ê±¼ä......
+    Write-Host ç»“æŸ
+    Write-Host å°è¯•è”ç½‘åŒæ­¥æ—¶é—´......
     Write-Host --------------------
     whep;
     Start-Service w32time
@@ -217,23 +217,23 @@ function TimeSync() {
             $ServiceIsStopped {
                 whep;
                 echo --------------------
-                Write-Warning "Windows TimeÎŞ·¨Æô¶¯!"
+                Write-Warning "Windows Timeæ— æ³•å¯åŠ¨!"
                 echo --------------------
                 whep
             }
             $ServiceIsRunning {
                 whep
                 echo --------------------
-                # ´ºÇï±Ê·¨(?)
-                Write-Host "Windows Time·şÎñÒÑÆô¶¯¡£" -ForegroundColor Green
+                # æ˜¥ç§‹ç¬”æ³•(?)
+                Write-Host "Windows TimeæœåŠ¡å·²å¯åŠ¨ã€‚" -ForegroundColor Green
                 echo --------------------
                 whep
             }
         }
     }
     else {
-        # Õı³£À´Ëµµ½²»ÁËÕâÀï
-        Write-Warning " Ã»ÓĞÈ¨ÏŞ¡¢»òÎŞ·¨¶ÁÈ¡W32time·şÎñ¡£"
+        # æ­£å¸¸æ¥è¯´åˆ°ä¸äº†è¿™é‡Œ
+        Write-Warning " æ²¡æœ‰æƒé™ã€æˆ–æ— æ³•è¯»å–W32timeæœåŠ¡ã€‚"
         # bye-bye
         return
     }
@@ -243,7 +243,7 @@ function TimeSync() {
         ping $NTP -n $delays
         if ($?) {w32tm /resync ;if ($?) {Write-FallbackFile} else {Read-FallbackFile}}
     }
-    Write-Warning "ÎŞ·¨Í¬²½Ê±¼ä£¡ÆôÓÃ±¸ÓÃ¼Æ»®¡£"
+    Write-Warning "æ— æ³•åŒæ­¥æ—¶é—´ï¼å¯ç”¨å¤‡ç”¨è®¡åˆ’ã€‚"
     Read-FallbackFile;
 }
 
@@ -255,7 +255,7 @@ function TimeSync() {
 function Main () {
     Grant;
     Fuck-Proxy;
-    Set-Title SEEWOÒ»Ìå»úÒÉÄÑÔÓÖ¢½â¾ö×ÔĞŞ¸´ÊµÓÃ³ÌĞò;
+    Set-Title SEEWOä¸€ä½“æœºç–‘éš¾æ‚ç—‡è§£å†³è‡ªä¿®å¤å®ç”¨ç¨‹åº;
     Kill-WindowsUpdate;
     Restart-Explorer;
     #########################################################
@@ -265,7 +265,7 @@ function Main () {
 }
 
 function Restart-Explorer() {
-#  Ç°ÈËÖ®Êö±¸ÒÓ
+#  å‰äººä¹‹è¿°å¤‡çŸ£
     $null
 }
 
