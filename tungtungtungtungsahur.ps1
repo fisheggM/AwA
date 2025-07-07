@@ -3,6 +3,7 @@
 #Requires -Version 4.0
 ########################################
 <#
+    @Editor: Notepad.EXE + Powershell ISE
     @Made by: Fails、 TNTfish、[DELETED]
     @版本状态: PRE-PRE-PRE-PRE-BETA
     @测试者:YOUYOUYOU
@@ -64,6 +65,11 @@ $需要填充的内容 = $null
 $需要填充一个正整数 = $null
 
 #-----------------------------------可修改的配置------------------------------------------
+#填写NTP网站:如(time.windows.com)，不需要加https://或http://或ws://或quic://等任何协议头
+# 不能是URL Scheme（如果您不知道什么是URL Scheme可以忽略)
+# 默认值: time.windows.com
+$NTP= $需要填充的内容
+
 #网络检验周期，越大越稳但结束得越慢
 #默认值:10
 $retries = $需要填充一个正整数
@@ -72,32 +78,63 @@ $retries = $需要填充一个正整数
 #默认值:3
 $delays = $需要填充一个正整数
 
+#保存备用文件的位置
+#这个文件夹不需要保证一定存在
+#但要保证有基本读写权限（遍历文件夹、创建文件、写入文件)
+#默认值:"$env:TEMP/Tung4Sahur" -> ~Appdata/local/Temp/Tung4Sahur -> C:/Users/XXXXXX/Appdata/Local/temp/Tung4Sahur/
+$SaveFileLoc = $需要填充的内容
 
+#备用文件名称
+#默认值:"LASTSESSION"
+$SaveFileName = $需要填充的内容
 
-
-
-#填写NTP网站:如(time.windows.com)，不需要加https://或http://或ws://或quic://等任何协议头
-# 不能是URL Scheme（如果您不知道什么是URL Scheme可以忽略)
-# 默认值: time.windows.com
-$NTP= $需要填充的内容
-
-#不要动
+#测试人员使用
 $DEBUG = $False;
 
+
+###################################################################################################################################
+---------------DANGER LINE------------------------------UNSAFE ZONE--------------------------------DANGER LINE------------------------------UNSAFE ZONE-----------------
+---------------DANGER LINE------------------------------UNSAFE ZONE--------------------------------DANGER LINE------------------------------UNSAFE ZONE-----------------
+---------------DANGER LINE------------------------------UNSAFE ZONE--------------------------------DANGER LINE------------------------------UNSAFE ZONE-----------------
+---------------DANGER LINE------------------------------UNSAFE ZONE--------------------------------DANGER LINE------------------------------UNSAFE ZONE-----------------
+---------------DANGER LINE------------------------------UNSAFE ZONE--------------------------------DANGER LINE------------------------------UNSAFE ZONE-----------------
+###################################################################################################################################
+
+
+#---------------------------------默认值部分----------------------------------------------
+
+#################################################
+if (!$NTP) {$NTP = "time.windows.com"}
+if(!$retries) {$retries=10}
+if(!$delays) {$delays=3}
+#################################################
+
+#################################################
+if(!$SaveFileLoc) {$SaveFileLoc = "$env:TEMP/Tung4Sahur"}
+if(!$SaveFileName) {$SaveFileName = "LASTSESSION"}
+#################################################
+
+#################################################
+if (!$DEBUG) {Test-Debug -Debug}
+#################################################
 
 #----------------------------------代码部分-----------------------------------------------
 # 基础环境
 
 # $MAX = -1
 $MAX = 0xFFFFFFFF;
+
 $NewLine = ([Environment]::NewLine);
+
 # [删除] 为了防止Get-Service的状态显示可能含有本地化情况所以采用数字
 #$ServiceIsStopped = 1
 #$ServiceIsRunning = 4
 # 多虑了...
-# [WARN] Switch有BUG...
+# [FIX] [WARN] Switch有BUG...
 $ServiceIsStopped = "Stopped"
 $ServiceIsRunning = "Running"
+
+$SaveFilePath = (Join-Path $SaveFileLoc $SaveFileName)
 
 #################################################################
 function Set-Title ( [string] $title ) {$host.UI.RawUI.WindowTitle = $title;}
@@ -116,33 +153,38 @@ function CleanDNS() {ipconfig /flushdns;ipconfig /registerdns;return;}
 
 function Grant (){if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) { Start-Process powershell.exe "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs;exit}}
 
-
 function Write-FallbackFile() {
-    mkdir $env:TEMP/Tung4Sahur -ErrorAction Ignore
+    Start-Transaction
+    if !(Test-path -Path $SaveFilePath) {mkdir $SaveFileLoc};
     if ([int]((Get-Date).year) -lt 2025) {Failed-SyncTime $True}
-    Set-Content $env:TEMP/Tung4Sahur/LASTSESSION (Get-Date)
+    Set-Content ( (Get-Date)
+    Complete-Transaction
+    Start-Transaction
+    #带时间的同步
+    w32tm /resync
+    if ($?) {Write-warning "无法精细的校准时间";exit -1}
+    Complete-Transaction
     exit 0
 }
 
 function DangerousTSReg() {
     Start-Transaction;
     $r = Get-ItemProperty -Path "Registry::HKLM\SYSTEM\CurrentControlSet\Services\W32Time\Config\" -UseTransaction;
-    if ($DEBUG) {Write-Host $r}
+    Write-Debug $r
     $r.MaxNegPhaseCorrection = $MAX;
     $r.MaxPosPhaseCorrection = $MAX;
     Complete-Transaction;
-    if ($DEBUG) {Write-Host $r}
+    Write-Debug $r
     return;
 }
 
 function Read-FallbackFile() {
     Write-Warning "启用备用计划。"
-    Get-Content $env:TEMP/Tung4Sahur/LASTSESSION
-    if (!$?) {Failed-SyncTime $False;}
-    $FDate = Get-Content $env:TEMP/Tung4Sahur/LASTSESSION
+    if (!Test-Path $SaveFilePath) {Failed-SyncTime $False}
+    $FDate = Get-Content $SaveFilePath
     Start-Transaction -RollbackPreference Never;
     Set-Date $FDate
-    if ([int]((Get-Date).year) -lt 2025) {Undo-Transaction;Failed-SyncTime $True;}
+    if ([int]((Get-Date).year) -lt 2024) {Undo-Transaction;Failed-SyncTime $True;}
     Complete-Transaction;
     return;
 }
@@ -201,11 +243,6 @@ function Kill-WindowsUpdate () {
 function TimeSync() {
     CleanDNS;
     DangerousTSReg;
-    #########################
-    if (!$NTP) {$NTP = "time.windows.com"}
-    if(!$retries) {$retries=10}
-    if(!$delays) {$delays=3}
-    #########################
     whep;
     Write-Host --------------------
     Write-Host 结束
@@ -259,10 +296,10 @@ function Main () {
     Set-Title SEEWO一体机疑难杂症解决自修复实用程序;
     Kill-WindowsUpdate;
     Restart-Explorer;
-    #########################################################
+#######################################################################
     TimeSync;
     # EXIT IN TimeSync
-    If ($DEBUG) {Pause}
+    If ($DebugPreference) {Pause}
 }
 
 function Restart-Explorer() {
@@ -272,8 +309,11 @@ function Restart-Explorer() {
 
 main;
 
+###############################################################################################################################################
+
 #所以应该不会有人真的在一体机看rxxx34吧...
 #总之记得报修 这程序只是个临时解决方案
 
 #泥门一定要买个[$9.99]键盘给[SCAM]不蓝泥们就玩不到我留在d盘的[链接已屏蔽]啦(如果你们能成哥晚成解谜的话）我留了一个金草莓🍓、一个[哎呀我的妈呀这是什么]、一只能爬梯子的猫、古人的智慧、windows激活器和[3.09Gib]的音乐和Windows Media Player中的一堆歌单只有知道其本质的任何生物才可以找到lololol
 
+###############################################################################################################################################
