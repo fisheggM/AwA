@@ -10,12 +10,12 @@
     @位置：https://raw.githubusercontent.com/fisheggM/AwA/refs/heads/main/tungtungtungtungsahur.ps1
     @补丁内容: Tungtungtungtung sahur
     @需要权限: 管理员级
-    @保存方式：以GB18030编码且未受修改的方式保存（双关？）
+    @保存方式：以UTF-8编码且未受修改的方式保存（双关？）但建议以GB18030或GBK形式保存，不建议使用ANSI
     @使用前的提醒：
         [01]如果您开启了纵云梯、魔法猫咪、七根棍子等可以访问XX34.XXX的工具，请关闭。
         [02]不保证成功，也不保证失败。
     @???:
-        data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAYAAABccqhmAAAACXBIWXMAAA7EAAAOxAGVKw4bAAADm0lEQVR42u3coUoEQRjAcUcOLIJNBNNd3GTRqCgYbIYLPoNdH0K7z2C4YDMIJ1ZFMG3UJIhNuGIaH8Bg+Fhm1/n9+nB7s8efuTBfyjkvAXVatgUgAIAAAAIACAAgAIAAAAIACAAgAIAAAAIACAAgAIAAAH01sgV1SykVHQiRc07eghMAIACAAAACAAgAIACAAAACAAgAIACAAAACAAgAIACAAAC/mAcQVPo+fdTpfGvQ+2eegBMAIACAAAACAAgAIACAAAACAAgACIAtAAEABAAQAEAAAAEA/qnq5wFE76OXvk9/dfASWv/c7hZ9/tN52fdX+zwBJwAQAEAAAAEABAAQAEAAAAEABAAQAEAAAAEABAAQAEAAgN5KOee6NyB4nzzqaP0stH58fVd0/95ODkPrbz8viz6/eQCAAAACAAgAIACAAAACAAgAIACAAAACAAgAIACAAAACAPSUeQDBeQDR+/z73w+h9fcre0X3r/TzR+cJmAcACAAgAIAAAAIACAAgAIAAAAIACAAgAIAAAAIACAAgAEBPDX4eQPQ+/8XaTujzz45XQ+vfnj78CgNm77H9P/96DK0f+jwBJwDwFwAQAEAAAAEABAAQAEAAAAEABAAQAEAAAAEABAAQAKC3qp8H8No0g/7+4+2N0PrS8whKP/+kbUPrzQMABAAQAEAAAAEABAAQAEAAAAEABAAQAEAAAAEABAAQAKAjI1sQU/o+++XNIrR+ull2/4b+/E4AgAAAAgAIACAAgAAAAgAIACAAgAAAAgAIACAAgAAAAgB0xDyAoNL32aebCy8BJwBAAAABAAQAEABAAAABAAQAEAAQAEAAAAEABAAQAEAAgP8n5Zzr3oCUQhvw2jShz5+9r1a9/9F5BpO2Da3POScnAEAAAAEABAAQAEAAAAEABAAQAEAAAAEABAAQAEAAAAEAeqj6eQDhDax8noD7/E4AgAAAAgAIACAAgAAAAgAIACAAgAAAAgAIACAAgAAAAgB0wjyA0i+g8DyBKPf5nQAAAQAEABAAQAAAAQAEABAAQAAAAQAEABAAQAAAAQAEAOiEeQBDf4HBeQJR7vM7AQACAAgAIACAAAACAAgAIACAAAACAAgAIACAAAACAAgA0AnzAMAJABAAQAAAAQAEABAAQAAAAQAEABAAQAAAAQAEABAAQAAAAQAEABAAQAAAAQAEABAAQAAAAQAEABAAQAAAAQAEABAAQACAv/0A1EeQhbwEqXMAAAAASUVORK5CYII=
+    data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAYAAABccqhmAAAACXBIWXMAAA7EAAAOxAGVKw4bAAADm0lEQVR42u3coUoEQRjAcUcOLIJNBNNd3GTRqCgYbIYLPoNdH0K7z2C4YDMIJ1ZFMG3UJIhNuGIaH8Bg+Fhm1/n9+nB7s8efuTBfyjkvAXVatgUgAIAAAAIACAAgAIAAAAIACAAgAIAAAAIACAAgAIAAAH01sgV1SykVHQiRc07eghMAIACAAAACAAgAIACAAAACAAgAIACAAAACAAgAIACAAAC/mAcQVPo+fdTpfGvQ+2eegBMAIACAAAACAAgAIACAAAACAAgACIAtAAEABAAQAEAAAAEA/qnq5wFE76OXvk9/dfASWv/c7hZ9/tN52fdX+zwBJwAQAEAAAAEABAAQAEAAAAEABAAQAEAAAAEABAAQAEAAgN5KOee6NyB4nzzqaP0stH58fVd0/95ODkPrbz8viz6/eQCAAAACAAgAIACAAAACAAgAIACAAAACAAgAIACAAAACAPSUeQDBeQDR+/z73w+h9fcre0X3r/TzR+cJmAcACAAgAIAAAAIACAAgAIAAAAIACAAgAIAAAAIACAAgAEBPDX4eQPQ+/8XaTujzz45XQ+vfnj78CgNm77H9P/96DK0f+jwBJwDwFwAQAEAAAAEABAAQAEAAAAEABAAQAEAAAAEABAAQAKC3qp8H8No0g/7+4+2N0PrS8whKP/+kbUPrzQMABAAQAEAAAAEABAAQAEAAAAEABAAQAEAAAAEABAAQAKAjI1sQU/o+++XNIrR+ull2/4b+/E4AgAAAAgAIACAAgAAAAgAIACAAgAAAAgAIACAAgAAAAgB0xDyAoNL32aebCy8BJwBAAAABAAQAEABAAAABAAQAEAAQAEAAAAEABAAQAEAAgP8n5Zzr3oCUQhvw2jShz5+9r1a9/9F5BpO2Da3POScnAEAAAAEABAAQAEAAAAEABAAQAEAAAAEABAAQAEAAAAEAeqj6eQDhDax8noD7/E4AgAAAAgAIACAAgAAAAgAIACAAgAAAAgAIACAAgAAAAgB0wjyA0i+g8DyBKPf5nQAAAQAEABAAQAAAAQAEABAAQAAAAQAEABAAQAAAAQAEAOiEeQBDf4HBeQJR7vM7AQACAAgAIACAAAACAAgAIACAAAACAAgAIACAAAACAAgA0AnzAMAJABAAQAAAAQAEABAAQAAAAQAEABAAQAAAAQAEABAAQAAAAQAEABAAQAAAAQAEABAAQAAAAQAEABAAQAAAAQAEABAAQACAv/0A1EeQhbwEqXMAAAAASUVORK5CYII=
 
 
 
@@ -67,8 +67,15 @@ $需要填充一个正整数 = $null
 #-----------------------------------可修改的配置------------------------------------------
 #填写NTP网站:如(time.windows.com)，不需要加https://或http://或ws://或quic://等任何协议头
 # 不能是URL Scheme（如果您不知道什么是URL Scheme可以忽略)
+#不能在外宇宙网
+#不能是localhost, [::1], 127.0.0.1等回环地址
 # 默认值: time.windows.com
+# 其实我觉得time.apple.com比time.windows.com那育碧服务器好多了
 $NTP= $需要填充的内容
+
+#好吧
+#默认值：0x9
+$NTPCode = "0x9"
 
 #网络检验周期，越大越稳但结束得越慢
 #默认值:10
@@ -89,16 +96,19 @@ $SaveFileLoc = $需要填充的内容
 $SaveFileName = $需要填充的内容
 
 #测试人员使用
-$DEBUG = $False;
+$DEBUG = $False
+
+#在PWSH中启动
+$GrantInPwsh = $False
 
 
-###################################################################################################################################
+<###################################################################################################################################
 ---------------DANGER LINE------------------------------UNSAFE ZONE--------------------------------DANGER LINE------------------------------UNSAFE ZONE-----------------
 ---------------DANGER LINE------------------------------UNSAFE ZONE--------------------------------DANGER LINE------------------------------UNSAFE ZONE-----------------
 ---------------DANGER LINE------------------------------UNSAFE ZONE--------------------------------DANGER LINE------------------------------UNSAFE ZONE-----------------
 ---------------DANGER LINE------------------------------UNSAFE ZONE--------------------------------DANGER LINE------------------------------UNSAFE ZONE-----------------
 ---------------DANGER LINE------------------------------UNSAFE ZONE--------------------------------DANGER LINE------------------------------UNSAFE ZONE-----------------
-###################################################################################################################################
+###################################################################################################################################>
 
 
 #---------------------------------默认值部分----------------------------------------------
@@ -115,31 +125,67 @@ if(!$SaveFileName) {$SaveFileName = "LASTSESSION"}
 #################################################
 
 #################################################
-if (!$DEBUG) {Test-Debug -Debug}
+if ($DEBUG) {$DebugPreference= "Continue"}
 #################################################
 
 #----------------------------------代码部分-----------------------------------------------
 # 基础环境
 
-# $MAX = -1
+#初始化变量
+$E_FixNetFlag = $null
+$Ethernet1 = $null
+$Ethernet2 = $null
+$Wlan = $null
+
 $MAX = 0xFFFFFFFF;
 
-$NewLine = ([Environment]::NewLine);
+$NEWLINE = ([Environment]::NewLine);
 
 # [删除] 为了防止Get-Service的状态显示可能含有本地化情况所以采用数字
-#$ServiceIsStopped = 1
-#$ServiceIsRunning = 4
+#$SERVICE_IS_STOPPED = 1
+#$SERVICE_IS_RUNNING = 4
 # 多虑了...
 # [FIX] [WARN] Switch有BUG...
-$ServiceIsStopped = "Stopped"
-$ServiceIsRunning = "Running"
+$SERVICE_IS_STOPPED = "Stopped"
+$SERVICE_IS_RUNNING = "Running"
 
 $SaveFilePath = (Join-Path $SaveFileLoc $SaveFileName)
 
 #################################################################
+
+function E-FixNet() {
+<#
+E: 实验性
+作用: 修复网络
+#>
+
+#首先把干扰因素排掉
+#飞机会把所有网站重定向回localhost或者一个本地网站
+Fuck-Proxy;
+
+#找出有线连接
+#由于本地化因素网络适配器没有统一的名字或代号
+#这里也只能看厂家给网络适配器设置了什么名字.
+#一般来说都是以太网和WIFI(WLAN)
+#WLAN(WIFI)应该没有中文的本地化.
+#找到就重启
+#找不到会是$null
+$Ethernet1 = [boolean](Get-NetAdapter -Name "以太网*" -Physical | Restart-NetAdapter)
+Write-Debug (Get-NetAdapter -Name "以太网*" -Physical)
+$Ethernet2 = [boolean](Get-NetAdapter -Name "Ethernet*" -Physical | Restart-NetAdapter)
+Write-Debug (Get-NetAdapter -Name "Ethernet*" -Physical)
+$Wlan = [boolean](Get-NetAdapter -Name "W*" -Physical | Restart-NetAdapter)
+Write-Debug (Get-NetAdapter -Name "W*" -Physical)
+
+#很原始的故障判定
+if ($Ethernet1 -or $Ethernet2 -or $Wlan){return $False} else {return $True}
+}
+
+function Restart-Explorer() {Restart-Process "Explorer"}
+
 function Set-Title ( [string] $title ) {$host.UI.RawUI.WindowTitle = $title;}
 
-function Fuck-Proxy() {Get-Process "Clash for Windows" -ErrorAction Ignore;if ($?) {Start-Process "clash://quit"};}
+function Fuck-Proxy() {Get-Process "Clash for Windows" -ErrorAction Ignore;if ($?) {$null = Start-Process "clash://quit";Write-Host "纵云梯已被拆除" -ForeGroundColor green};}
 
 # Write-Host-But-Nothing
 # 作用：空一行 。
@@ -147,45 +193,89 @@ function whbn() {Write-Host $null;}
 
 #Write-Host-Echo-with-Point
 # 作用：同ECHO. 。
-function whep() {Write-Host $NewLine;}
+function whep() {Write-Host $NEWLINE;}
 
 function CleanDNS() {ipconfig /flushdns;ipconfig /registerdns;return;}
 
-function Grant (){if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) { Start-Process powershell.exe "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs;exit}}
+function Grant (){if($GrantInPwsh){$shell = "pwsh.EXE"}else{$shell="powershell.EXE"};if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) { Start-Process $shell "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs;exit}}
+
+function Restart-Process([string]$process=$null){
+    Write-Debug "IN Restart-Process"
+    if (!$process) {return $False};
+    $:: = Get-Process $process -ErrorAction Ignore -Verbose;
+    if($? -and [boolean]$::){
+        Stop-Process -InputObject $::;
+        Start-Sleep -Seconds 5 -Verbose
+        $:: = Get-Process $process -ErrorAction Ignore -Verbose;
+        Start-Process -InputObject $::;
+        return $True
+    }
+    Write-Debug $::
+    Write-Debug "OUT Restart-Process"
+}
 
 function Write-FallbackFile() {
     Start-Transaction
-    if !(Test-path -Path $SaveFilePath) {mkdir $SaveFileLoc};
-    if ([int]((Get-Date).year) -lt 2025) {Failed-SyncTime $True}
-    Set-Content ( (Get-Date)
+    if (!(Test-path -Path $SaveFileLoc)) {mkdir $SaveFileLoc};
+    if ([int]((Get-Date).year) -lt 2024 -And [int]((Get-Date).Month) -eq 1) {Undo-Transaction;Read-FallbackFile}
+    Write-Debug "将时间数据写入备用文件"
+    Set-Content $SaveFilePath (Get-Date)
+    Write-Debug (Get-Content $SaveFilePath)
     Complete-Transaction
     Start-Transaction
-    #带时间的同步
-    w32tm /resync
-    if ($?) {Write-warning "无法精细的校准时间";exit -1}
     Complete-Transaction
     exit 0
 }
 
 function DangerousTSReg() {
-    Start-Transaction;
-    $r = Get-ItemProperty -Path "Registry::HKLM\SYSTEM\CurrentControlSet\Services\W32Time\Config\" -UseTransaction;
-    Write-Debug $r
-    $r.MaxNegPhaseCorrection = $MAX;
-    $r.MaxPosPhaseCorrection = $MAX;
+    Write-Debug "In DangerousTSREG"
+    Start-Transaction -RollbackPreference Never;
+
+    $:: = Get-ItemProperty -Path "Registry::HKLM\SYSTEM\CurrentControlSet\Services\W32Time\Config\" -UseTransaction;
+
+    Write-Debug $::
+
+    if ($::.MaxNegPhaseCorrection -eq $MAX){Undo-Transaction;return $True}
+
+    Set-ItemProperty -Path "Registry::HKLM\SYSTEM\CurrentControlSet\Services\W32Time\Config\" -Name "MaxNegPhaseCorrection" -Value $MAX -Type "Dword" -Verbose;
+    
+    if(!$?){Undo-Transaction;return $False};
+
+    if ($::.MaxPosPhaseCorrection -eq $MAX) {Undo-Transaction;return $True}
+
+    Set-ItemProperty -Path "Registry::HKLM\SYSTEM\CurrentControlSet\Services\W32Time\Config\" -Name "MaxPosPhaseCorrection" -Value $MAX -Type "Dword" -Verbose;
+
+    if(!$?){Undo-Transaction;return $False};
+
     Complete-Transaction;
-    Write-Debug $r
-    return;
+
+    $:: = Get-ItemProperty -Path "Registry::HKLM\SYSTEM\CurrentControlSet\Services\W32Time\Config\";
+
+    Write-Debug $::
+
+    return $True;
 }
 
 function Read-FallbackFile() {
     Write-Warning "启用备用计划。"
-    if (!Test-Path $SaveFilePath) {Failed-SyncTime $False}
+    if (!(Test-Path $SaveFilePath)) {Failed-SyncTime $False}
     $FDate = Get-Content $SaveFilePath
-    Start-Transaction -RollbackPreference Never;
+    Start-Transaction;
+    if (
+        [int]((Get-Date $FDate).year) -LT 2025 `
+    -or [int]((Get-Date $FDate).Hour) -EQ 0
+    ) 
+    {
+        Undo-Transaction;
+        Failed-SyncTime $True;
+    }
     Set-Date $FDate
-    if ([int]((Get-Date).year) -lt 2024) {Undo-Transaction;Failed-SyncTime $True;}
+    if (!$?) {Undo-Transaction;}
     Complete-Transaction;
+    #a
+    #带时间的同步
+    w32tm /resync
+    if (!$?) {Write-warning "无法精细地校准时间";exit -1}
     return;
 }
 
@@ -216,7 +306,7 @@ function Kill-WindowsUpdate () {
     Stop-Service wuauserv
     if  ($?) {
         switch ((Get-Service wuauserv).Status) {
-            $ServiceIsStopped {
+            $SERVICE_IS_STOPPED {
                 whep;
                 echo --------------------
                 # 春秋笔法(?)
@@ -224,7 +314,7 @@ function Kill-WindowsUpdate () {
                 echo --------------------
                 whep
             }
-            $ServiceIsRunning {
+            $SERVICE_IS_RUNNING {
                 whep
                 echo --------------------
                 Pause
@@ -242,7 +332,18 @@ function Kill-WindowsUpdate () {
 
 function TimeSync() {
     CleanDNS;
-    DangerousTSReg;
+    Stop-Service -name "w32time"
+    Start-Transaction
+    w32tm /unregister
+    Stop-Service -name "w32time" -ErrorAction SilentlyContinue;
+    Start-Sleep -Seconds 6.66
+<#
+    [BUG]在"w32time服务已运行"的情况下执行w32tm /unregister可能会有产生幽灵服务的BUG; 
+#>
+    w32tm /register
+    [boolean]$:: = DangerousTSReg;
+    Write-Debug "OUT DangerousTSReg"
+    if (!$::){Write-Warning "无法修改注册表!"}
     whep;
     Write-Host --------------------
     Write-Host 结束
@@ -252,14 +353,14 @@ function TimeSync() {
     Start-Service w32time
     if  ($?) {
         switch ((Get-Service w32time).Status) {
-            $ServiceIsStopped {
+            $SERVICE_IS_STOPPED {
                 whep;
                 echo --------------------
                 Write-Warning "Windows Time无法启动!"
                 echo --------------------
                 whep
             }
-            $ServiceIsRunning {
+            $SERVICE_IS_RUNNING {
                 whep
                 echo --------------------
                 # 春秋笔法(?)
@@ -273,13 +374,20 @@ function TimeSync() {
         # 正常来说到不了这里
         Write-Warning " 没有权限、或无法读取W32time服务。"
         # bye-bye
-        return
+        exit -1
     }
-    w32tm /register
-    w32tm /config /manualpeerlist:$NTP /update /reliable:no
+    w32tm /config /manualpeerlist:$($NTP + "," + $NTPCode) /update /reliable:no
     for ($i=0; $i -lt $retries; $i++) {
         ping $NTP -n $delays
-        if ($?) {w32tm /resync ;if ($?) {Write-FallbackFile} else {Read-FallbackFile}}
+        if ($?) {w32tm /resync ;if ($?) {Write-FallbackFile}}
+    }
+    if (!$E_FixNetFlag) {
+        E-FixNet;
+        $E_FixNetFlag = $True;
+        TimeSync
+    }
+    else {
+        Write-Warning "尝试修复网络......但效果并不显著";
     }
     Write-Warning "无法同步时间！启用备用计划。"
     Read-FallbackFile;
@@ -291,29 +399,28 @@ function TimeSync() {
 
 #######################################################################
 function Main () {
+#######################################################################
     Grant;
+    CleanDNS;
+    if ($DebugPreference) {Set-Date "1602/01/01";Set-StrictMode -Version latest;Set-PSDebug -Trace 0;Start-Process "Clash://";Start-Sleep -Seconds 6.66}
     Fuck-Proxy;
     Set-Title SEEWO一体机疑难杂症解决自修复实用程序;
     Kill-WindowsUpdate;
     Restart-Explorer;
 #######################################################################
+
     TimeSync;
     # EXIT IN TimeSync
     If ($DebugPreference) {Pause}
 }
 
-function Restart-Explorer() {
-#  前人之述备矣
-    $null
-}
-
 main;
 
-###############################################################################################################################################
+<###############################################################################################################################################
 
 #所以应该不会有人真的在一体机看rxxx34吧...
 #总之记得报修 这程序只是个临时解决方案
 
 #泥门一定要买个[$9.99]键盘给[SCAM]不蓝泥们就玩不到我留在d盘的[链接已屏蔽]啦(如果你们能成哥晚成解谜的话）我留了一个金草莓🍓、一个[哎呀我的妈呀这是什么]、一只能爬梯子的猫、古人的智慧、windows激活器和[3.09Gib]的音乐和Windows Media Player中的一堆歌单只有知道其本质的任何生物才可以找到lololol
 
-###############################################################################################################################################
+###############################################################################################################################################>
