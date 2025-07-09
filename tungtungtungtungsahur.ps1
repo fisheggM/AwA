@@ -10,7 +10,7 @@
     @位置：https://raw.githubusercontent.com/fisheggM/AwA/refs/heads/main/tungtungtungtungsahur.ps1
     @补丁内容: Tungtungtungtung sahur
     @需要权限: 管理员级
-    @保存方式：以UTF-8编码且未受修改的方式保存（双关？）但建议以GB18030或GBK形式保存，不建议使用ANSI
+    @保存方式：以GB10030或UTF-8编码且未受修改的方式保存（双关？)不建议使用ANSI
     @使用前的提醒：
         [01]如果您开启了纵云梯、魔法猫咪、七根棍子等可以访问XX34.XXX的工具，请关闭。
         [02]不保证成功，也不保证失败。
@@ -70,8 +70,7 @@ $需要填充一个正整数 = $null
 #不能在外宇宙网
 #不能是localhost, [::1], 127.0.0.1等回环地址
 # 默认值: time.windows.com
-# 其实我觉得time.apple.com比time.windows.com那育碧服务器好多了
-$NTP= $需要填充的内容
+$NTP= "time.apple.com"
 
 #好吧
 #默认值：0x9
@@ -185,7 +184,7 @@ function Restart-Explorer() {Restart-Process "Explorer"}
 
 function Set-Title ( [string] $title ) {$host.UI.RawUI.WindowTitle = $title;}
 
-function Fuck-Proxy() {Get-Process "Clash for Windows" -ErrorAction Ignore;if ($?) {$null = Start-Process "clash://quit";Write-Host "纵云梯已被拆除" -ForeGroundColor green};}
+function Fuck-Proxy() {Get-Process "Clash for Windosws" -ErrorAction Ignore;if ($?) {$null = Start-Process "clash://quit";Write-Host "纵云梯已被拆除" -ForeGroundColor green};}
 
 # Write-Host-But-Nothing
 # 作用：空一行 。
@@ -338,11 +337,11 @@ function TimeSync() {
     Stop-Service -name "w32time" -ErrorAction SilentlyContinue;
     Start-Sleep -Seconds 6.66
 <#
-    [BUG]在"w32time服务已运行"的情况下执行w32tm /unregister可能会有产生幽灵服务的BUG; 
+    [BUG]在"w32time服务已运行"的情况下执行w32tm /unregister会有幽灵服务的BUG; 
 #>
     w32tm /register
     [boolean]$:: = DangerousTSReg;
-    Write-Debug "OUT DangerousTSReg"
+    Write-Debug "exit DangerousTSReg"
     if (!$::){Write-Warning "无法修改注册表!"}
     whep;
     Write-Host --------------------
@@ -421,6 +420,6 @@ main;
 #所以应该不会有人真的在一体机看rxxx34吧...
 #总之记得报修 这程序只是个临时解决方案
 
-#泥门一定要买个[$9.99]键盘给[SCAM]不蓝泥们就玩不到我留在d盘的[链接已屏蔽]啦(如果你们能成哥晚成解谜的话）我留了一个金草莓🍓、一个[哎呀我的妈呀这是什么]、一只能爬梯子的猫、古人的智慧、windows激活器和[3.09Gib]的音乐和Windows Media Player中的一堆歌单只有知道其本质的任何生物才可以找到lololol
+#泥门一定要买个[$9.99]键盘给[SCAM]不蓝泥们就玩不到我留在d盘的[链接已屏蔽]啦(如果你们能成哥晚成解谜的话）我留了一个金草莓??、一个[哎呀我的妈呀这是什么]、一只能爬梯子的猫、古人的智慧、windows激活器和[3.09Gib]的音乐和Windows Media Player中的一堆歌单只有知道其本质的任何生物才可以找到lololol
 
 ###############################################################################################################################################>
