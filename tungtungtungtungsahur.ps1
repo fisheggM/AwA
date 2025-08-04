@@ -105,7 +105,7 @@ $delays = $需要填充一个正整数
 
 # 保存备用文件的位置
 # 这个文件夹不需要保证一定存在
-# 但要保证有基本读写权限（遍历文件夹、创建文件、写入文件)
+# 但要保证其上级目录有基本读写权限（如遍历文件夹、创建文件、读取文件、写入文件等)
 # 默认值:"$env:TEMP/Tung4Sahur" -> ~Appdata/local/Temp/Tung4Sahur -> C:/Users/XXXXXX/Appdata/Local/temp/Tung4Sahur/
 $SaveFileLoc = $需要填充的内容
 
@@ -113,8 +113,18 @@ $SaveFileLoc = $需要填充的内容
 # 默认值:"LASTSESSION"
 $SaveFileName = $需要填充的内容
 
+# 信任时间数据文件位置
+# 这个文件夹不需要保证一定存在
+# 但要保证有其上级目录基本读写权限（如遍历文件夹、创建文件、读取文件、写入文件等)
+# 默认值: $SaveFileLoc ( 的值 )
+$TrustedFileLoc = $需要填充的内容
+
+# 信任时间数据文件名称
+# 默认值:"TRUSTEDFILE"
+$TrustedFileName = $需要填充的内容
+
 # 失败后回滚的日期
-# 回滚日期与今天实际日期的日期差不能超过50天
+# 失败后回滚日期与今天实际日期的日期差不能超过50天
 # 不然就会触发NET::ERR_CERT_DATE_INVALID（时钟过慢）
 # 也不能超过今天实际日期，会触发net::ERR_CERT_DATE_INVALID（时钟过快）
 # 不需要填写hms（小时、分钟、秒数及以后）
@@ -143,15 +153,25 @@ $GrantInPwsh = $False
 
 #---------------------------------默认值部分----------------------------------------------
 
+# _: [ref]$foo "如果$foo是$NULL或1/N个空格则设定为这个字符串参数"
+#                   如果$foo不是$NULL则保持不变
+function _:{[OutputType()]param([parameter(Mandatory=$true)][ref]$data,[parameter(Mandatory=$true)]$v)process{if([System.String]::IsNullOrWhiteSpace($data.Value)){$data.Value=$v}}}
+
+
 #################################################
-if (!$NTP) {$NTP = "time.windows.com"}
-if(!$retries) {$retries=10}
-if(!$delays) {$delays=3}
+_: [ref]$NTP "time.windows.com"
+_: [ref]$delays 3
 #################################################
 
 #################################################
-if(!$SaveFileLoc) {$SaveFileLoc = "$env:TEMP/Tung4Sahur"}
-if(!$SaveFileName) {$SaveFileName = "LASTSESSION"}
+_: [ref]$SaveFileLoc "$env:TEMP/Tung4Sahur"
+_: [ref]$SaveFileName "LASTSESSION"
+#################################################
+
+
+#################################################
+_: [ref]$TrustedFileLoc $SaveFileLoc
+_: [ref]$TrustedFileName "TRUSTEDFILE"
 #################################################
 
 #################################################
@@ -162,11 +182,63 @@ if ($DebugPreference) {Set-Date "1601/01/01";Set-StrictMode -Version latest;Set-
 #----------------------------------代码部分-----------------------------------------------
 # 基础环境
 
+# C# Tweak
+$Member =
+'
+[DllImport("user32.dll")] public static extern bool EnableMenuItem(long hMenuItem, long uIDItem, long uFlag);
+[DllImport("user32.dll")] public static extern long GetSystemMenu(IntPtr hMenuHandle, bool bReset);
+[DllImport("user32.dll")] public static extern long SetWindowsLongPtr(long hMenuHandle, long nIndex, long dwNewLong);
+[DllImport("user32.dll")] public static extern bool EnableWindow(long hMenuHandle, int FlagEnable);
+[DllImport("user32.dll")] public static extern bool RegisterHotKey(IntPtr hWnd, int id, long fsModifiers, long vk);
+[DllImport("user32.dll")] public static extern bool UnregisterHotKey(IntPtr hWnd, int id, long fsModifiers, long vk);
+[DllImport("user32.dll")] public static extern bool DrawMenuBar(IntPtr hWnd);
+'
+
+#所有的ENUM都不支持函数热加载...
+#函数仍保持着ENUM修改前的参数限制...
+
+ #http://msdn.microsoft.com/zh-cn/library/windows/desktop/ms646360(v=vs.85).aspx
+ENUM MENUITEM = {
+    SC_CLOSE=0xF060;
+    SC_CONTEXTHELP=0xF180;
+    SC_DEFAULT=0xF160; # 双击窗口
+    SC_MAXIMIZE=0XF030
+    SC_MINIMIZE=0XF020
+}
+
+# http://msdn.microsoft.com/zh-cn/library/windows/desktop/ms647636(v=vs.85).aspx
+ENUM ENABLEFLAGS = {
+    MF_BYCOMMAND=0X00000000L;
+    MF_BYPOSITION=0X00000400L;
+    MF_DISABLED=0X00000002L;
+    MF_ENABLED=0X00000000L;
+    MF_GRAYED=0X00000001L;
+}
+
+# https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-registerhotkey#parameters
+ENUM FSMODIFERS = {
+    ALT=0x0001;
+    CTRL=0x0002;
+    NOREPEAT=0x4000;
+    SHIFT=0x0004;
+    SUPER=0x0008
+}
+
+#https://learn.microsoft.com/zh-cn/windows/desktop/inputdev/virtual-key-codes
+ENUM VK = {
+    F4 = 0x73;
+    Y = 0x59;
+    N = 0x4E;
+    NULL = 0x00
+}
+
+
 #初始化变量
 $E_FixNetFlag = $null
 $Ethernet1 = $null
 $Ethernet2 = $null
 $Wlan = $null
+$proceed = $null
 
 $MAX = 0xFFFFFFFF;
 
@@ -182,27 +254,57 @@ $SERVICE_IS_RUNNING = "Running"
 
 $SaveFilePath = (Join-Path $SaveFileLoc $SaveFileName)
 
+$TrustedFilePath = (Join-Path $TrustedFileLoc $TrustedFileName)
+
 #################################################################
-
-function Restart-Explorer() {Restart-Process "Explorer"}
-
-function Set-Title ( [string] $title ) {$host.UI.RawUI.WindowTitle = $title;}
-
-function Fuck-Proxy() {Get-Process "Clash for Windows" -ErrorAction Ignore;if ($?) {$null = Start-Process "clash://quit";Write-Host "纵云梯已被拆除" -ForeGroundColor green};}
 
 # Write-Host-But-Nothing
 # 作用：空一行 。
-function whbn() {Write-Host $null;}
+function whbn {[OutputType()]param()process{Write-Host $null;}}
 
 #Write-Host-Echo-with-Point
 # 作用：同ECHO. 。
-function whep() {Write-Host $NEWLINE;}
+function whep {[OutputType()]param()process{Write-Host $NEWLINE;}}
 
-function CleanDNS() {ipconfig /flushdns;ipconfig /registerdns;return;}
+#包装 restart-process
+function Restart-Explorer {[OutputType()]param()process{Restart-Process "Explorer"}}
 
-function Grant (){[OutputType()]param()process{if($GrantInPwsh){$shell = "pwsh.EXE"}else{$shell="powershell.EXE"};if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) { Start-Process $shell "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs;exit}}}
+function Null-Key(){[OutputType()]param()process {$null = $host.UI.RawUI.ReadKey()}}
 
-function Write-FallbackFile() {
+function CleanDNS {[OutputType()]param()process{ipconfig /flushdns;ipconfig /registerdns;return;}}
+
+#同CMD TITLE
+function Set-Title {[OutputType()]param([Parameter(Mandatory=$true)][string]$title)process{$host.UI.RawUI.WindowTitle = $title;}}
+
+#作用: 加载c#代码
+function Load {[OutputType([System.Boolean])param()process{Get-Type -MemberDefinition:$Member -Name:User32 -Namespace:External;return $?}}
+
+#作用：替代Pause
+function Do-Pause {[OutputType()]param([Parameter(Mandatory=$true)][System.String]$Text)process{Write-Host $Text -NoNewline;NullKey()}}
+
+#作用：去除CLXXH(通过clXXh scheme: clXXh://quit)
+function Fuck-Proxy {[OutputType()]param()process{Get-Process "Clash for Windows" -ErrorAction Ignore;if($?){$null = Start-Process "clash://quit";Write-Host "纵云梯已被拆除" -ForeGroundColor green};}}
+
+#作用：合法UAC提权
+function Grant{[OutputType()]param()process{if($GrantInPwsh){$shell="pwsh.EXE"}else{$shell="powershell.EXE"};if(-NOT([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]"Administrator")){Start-Process $shell "-NoProfile -ExecutionPolicy:Bypass -File:`"$PSCommandPath`"" -Verb:RunAs;exit}}}
+
+#比Do-Pause更好
+#不需要按回车键
+#但会显示用户按键...
+#适用于Y/N决策
+
+function Wait-Key() {
+    [OutputType([System.Boolean])]
+    param (
+        [parameter(Mandatory=$True)]
+        [VK[]]$Keys
+    )
+    process {
+        if ($Keys.value__Contains($host.UI.RawUI.ReadKey().VirtualKeyCode)) {return $true} else {Return $False}
+    }
+}
+
+function Write-FallbackFile {
     [OutputType()]
     param(
         
@@ -210,18 +312,18 @@ function Write-FallbackFile() {
     process {
         Start-Transaction -Independent
         if (!(Test-path -Path $SaveFileLoc)) {mkdir $SaveFileLoc};
+        else {Write-Warning "$SaveFileLoc 在管理员权限下不可达";Undo-Transaction;Pau}
         if ([int]((Get-Date).year) -lt 2024 -And [int]((Get-Date).Month) -eq 1) {Undo-Transaction;Read-FallbackFile}
         Write-Host "将时间数据写入备用文件"
         Set-Content $SaveFilePath ([DateTime]::Now.ToFileTime().ToString())
         Write-Host (Get-Content $SaveFilePath)
         Complete-Transaction
-        Write-Host "按任意键以退出[0/1]"
-        Pause
+        Do-Pause "按回车键退出[0/1]"
         exit 0
     }
 }
 
-function DangerousTSReg() {
+function DangerousTSReg {
     [OutputType([System.Boolean])]
     param(
             
@@ -244,7 +346,7 @@ function DangerousTSReg() {
     }
 }
 
-function Deltarune() {
+function Deltarune {
     [OutputType([System.Collections.Specialized.OrderedDictionary])]
     param (
         [Parameter(Mandatory=$true)]
@@ -254,17 +356,26 @@ function Deltarune() {
         [DateTime]$FallbackTime
     )
     process {
-    # [out] @{Stat:NegOrEqual -> $False | Pos -> $True, TimeDelta: [TimeSpan] ($SyncedTime - $FallbackTime)}
+    # [out] @[hashtable]{Stat:ErrPos | Pos | Neg ->  2 | 0 | 1, TimeDelta: [TimeSpan] ($SyncedTime - $FallbackTime)}
     # [do] 用来计算w32tm校准后与备用文件的时间差
-        return [Ordered]@{
-            Stat=$($SyncedTime -gt $FallbackTime)
-            TimeDelta=$($SyncedTime.Subtract($FallbackTime))
+        $TimeDelta = $SyncedTime - $FallbackTime
+        switch $SyncedTime.CompareTo($FallbackTime) {
+            ($_ -ge 1*365*24*3600) {
+                return @{Stat=2;TimeDelta=$TimeDelta}
+            }
+            ($_ -ge 0) {
+                return @{Stat=0;TimeDelta=$TimeDelta}
+            }
+            ($_ -lt 0) {
+                #感觉这里应该不会执行
+                return @{Stat=1;TimeDelta=$TimeDelta}
+            }
         }
     }
 }
 
 
-function Restart-Process(){
+function Restart-Process {
     param(
         [Parameter(Mandatory=$true)]
         [string]$process=$null
@@ -285,7 +396,7 @@ function Restart-Process(){
     }
 }
 
-function E-FixNet() {
+function E-FixNet {
 <#
 E: 实验性
 作用: 修复网络
@@ -318,7 +429,7 @@ E: 实验性
     }
 }
 
-function Read-FallbackFile() {
+function Read-FallbackFile {
     [OutputType()]
     param(
         
@@ -337,25 +448,37 @@ function Read-FallbackFile() {
         Set-Date $FDate
         if (!$?) {Undo-Transaction;}
         Complete-Transaction;
+        Start-Transaction -Independent
         #带时间的同步
         w32tm /resync
         if (!$?) {Write-warning "无法精细地校准时间";exit -1}
         $:: = Deltarune (Get-Date) (Get-Date $FDate)
-        if ($::.Stat) {
-            Write-Host "备用时间比同步后时间偏差了+$($::.TimeDelta.TotalSeconds.ToString())秒"
-            Write-FallbackFile;
+        switch ($::) {
+            0 {
+                Complete-Transaction
+                Write-Host "备用时间比同步后时间偏差了+$($::.TimeDelta.TotalSeconds.ToString())秒" -ForegroundColor Cyan
+                Write-FallbackFile
+            }
+            1 {
+                Undo-Transaction
+                Write-Host "备用时间比同步后时间偏差了$($::.TimeDelta.TotalSeconds.ToString())秒" -ForegroundColor Cyan
+                Write-Host "w32tm同步无效，时间数据将不会写入备用文件中" -ForegroundColor Red
+                exit 1
+            }
+            2 {
+                Undo-Transaction
+                Write-Host "备用时间比同步后时间相差超过1年?!相差$($::.TimeDelta.TotalSeconds.ToString())" -ForegroundColor Red
+                Write-Host "w32tm同步无效，时间数据将回滚至备用文件"
+                Set-Date $FDate
+                
+            }
         }
-        else {
-        #感觉这里应该不会执行
-            Write-Host "备用时间比同步后时间偏差了$($::.TimeDelta.TotalSeconds.ToString())秒"
-            Write-Host "w32tm同步无效，时间数据将不会写入备用文件中"
-            exit 0
         return;
         }
     }
 }
 
-function Failed-SyncTime() {
+function Failed-SyncTime {
     [OutPutType()]
     param (
         [Parameter(Mandatory=$true)]
@@ -370,20 +493,59 @@ function Failed-SyncTime() {
         }
         Set-Date $FailedFallbackDate
         Write-Warning "请手动微调时间!"
-        Start-Process -Verb Runas "$env:windir\System32\timedate.cpl"
-        $wshell = New-Object -ComObject wscript.shell
-        Start-Sleep -Seconds 3
-        $wshell.AppActivate((Get-Process rundll32)[0].Id)
-        $wshell.SendKeys("D")
-        Write-Warning "按下ENTER键结束 程序[1/2]"
-        Pause
-        Write-Warning "按下ENTER键结束程序[2/2]"
-        Pause
-        exit -1
+
     }
 }
 
-function Kill-WindowsUpdate () {
+function Set-TrustedTime {
+    [OutputType()]
+
+    param(
+        [Parameter(Mandatory=$true)]
+        [System.DateTime] $TrustedTime
+    )
+
+    begin {
+        Start-Process -Verb Runas "$env:windir\System32\timedate.cpl"
+        $wshell = New-Object -ComObject wscript.shell
+        $wshell.AppActivate((Get-Process rundll32)[0].Id)
+        Start-Sleep -Seconds 0.01
+        $wshell.SendKeys("D")
+
+        whep;
+        Write-Host "--------------------";
+        whbn;
+        Write-Host "请在弹出的时间设置窗口中设定好现实时间(精确到分)"
+        whbn;
+        Write-Host "--------------------";
+        Write-Warning "设定结束后直接关闭时间设置窗口，当前的时间将会记录到硬盘作为同步失败后最后的回滚"
+        Write-Warning "请不要关闭该窗口."
+        Write-Host "等待用户关闭操作..."
+        Wait-Process "rundll32"
+    }
+
+    process {
+        $TrustedDate = [System.Datetime]::now
+        if (!(Test-path -Path $TrustedFileLoc)) {mkdir $TrustedFileLoc};
+        else {Write-Host "$TrustedFileLoc 在管理员权限下不可达";exit -1}
+        Start-Transaction -Independent
+        Set-Content -Value $TrustedDate.ToFileTime() -Path $TrustedFilePath
+        if ($?) {
+            Write-Warning "是否将信任时间设置为$NEWLINE$([datetime]::Now.ToLocalTime().ToString("yyyy年 M月 d日 dddd tt hh:mm:ss UTCz"))?$NEWLINE[Y/N](按下Y键或N键， Y（es）键继续，N（o）键重来)"
+            $proceed = Wait-Key Y,N
+            if ($proceed) {
+                Complete-Transaction
+                Write-Debug (Get-Content -Path $TrustedFilePath)
+                Write-Host "时间数据成功写入!"
+                Do-Pause("按回车键退出[0/1]")
+                exit 0
+            }
+            else {Undo-Transaction;Set-TrustedTime # 递归循环 }
+        }
+    }
+}
+
+function Kill-WindowsUpdate {
     [OutputType()]
     param(
         
@@ -437,7 +599,7 @@ function Kill-WindowsUpdate () {
     }
 }
 
-function TimeSync() {
+function TimeSync {
     [OutputType()]
     param(
         
@@ -506,9 +668,45 @@ function TimeSync() {
     }
 }
 
-
-
-
+function Fuck-Quit {
+    [OutputType()]
+    param (
+        
+    )
+    begin {
+        Write-Host  "Fuck Quit --- 防熊孩子装置"
+        whep;
+        if (Load) {
+            Write-Host "成功引入外部C#函数!"
+            whep;
+            Write-Host "----------------------"
+            Write-Host "禁用窗体关闭功能..."
+            Write-Host "----------------------"
+            whep;
+            Write-Warning "如果 您 *真的* 想要关闭该窗口，键入 Ctrl+C 或 在任务栏 鼠标右键 该窗口图标 -> 选择 关闭窗口 / 关闭所有窗口 "
+        } 
+        else {Write-Warning "引入外部C#函数失败,防熊孩子装置将失效!(这并不是您的问题)";return $False;}
+    }
+    process {
+        Write-Host "寻找该窗口."
+        $PSProcess = Get-Process -Pid $PID
+        Write-Debug $PSProcess
+        Write-Host "寻找主窗口句柄."
+        $handle = $PSProcess.MainWindowHandle
+        Write-Debug $handle
+        Write-Host "获取控制菜单."
+        $m = [External.user32]::GetSystemMenu($handle, 0);
+        Write-Debug $m
+        Write-Host "禁用关闭功能."
+        $Stat = [External.user32]::EnableMenuItem($m,  [MENUITEM]::SC_CLOSE.value__, [$ENABLEFLAGS]::MF_GRAYED.value__);
+        if ($? -and $Stat -ne -1) {Write-Host "关闭功能已禁用."}
+        else {Write-Warning "未能成功禁用!";return $False}
+    }
+    end {
+        Write-Host "强制刷新菜单栏"
+        [External.user32]::DrawMenuBar($handle);
+    }
+}
 
 #######################################################################
 function Main () {
@@ -517,11 +715,13 @@ function Main () {
         
     )
     process {
+
 #######################################################################
         Grant;
+        Set-Title SEEWO一体机疑难杂症解决自修复实用程序;
+        Fuck-Quit;
         CleanDNS;
         Fuck-Proxy;
-        Set-Title SEEWO一体机疑难杂症解决自修复实用程序;
         Kill-WindowsUpdate;
         Restart-Explorer;
 #######################################################################
@@ -537,7 +737,7 @@ Main;
 
 <###############################################################################################################################################
 
-#所以应该不会有人真的在一体机看rxxx34吧...
-#总之记得报修 这程序只是个临时解决方案
+ 所以应该不会有人真的在一体机看rxxx34吧...
+ 总之记得报修 这程序只是个临时解决方案
 
 ###############################################################################################################################################>
