@@ -1,19 +1,40 @@
-#防止 远 古 Powershell 3.0 运行 该 脚本
+
+########### -*- Coding: UTF-8 -*-#############
+
+
+<#######################################
+    防止 远 古 Powershell 3.0 运行 该 脚本
+    我也服了沟槽的Powershell 2.0 要 啥 啥没有.
+    Powershell 2.0 没有 C# DLL 支持 我 玩个蛋.
+    不 说了，我去 混沌 分裂者 总部 参军
+    Site-02冲冲冲.
+########################################>
+
+
 ########################################
 #Requires -Version 4.0
 ########################################
+
+
 <#
     @Editor: Notepad.EXE + Powershell ISE
     @Made by: Fails、 TNTfish、[DELETED]
-    @版本状态: PRE-PRE-PRE-PRE-BETA
+    @版本状态: Version 2.1 Alpha
     @测试者:YOUYOUYOU
-    @位置：https://raw.githubusercontent.com/fisheggM/AwA/refs/heads/main/tungtungtungtungsahur.ps1
-    @补丁内容: Tungtungtungtung sahur
-    @需要权限: 管理员级
-    @保存方式：以GB10030或UTF-8编码且未受修改的方式保存（双关？)不建议使用ANSI
+    @位置：
+                 https://github.com/fisheggM/AwA/archive/refs/tags/v1.0-Beta.1.zip (初代)
+                 https://raw.githubusercontent.com/fisheggM/AwA/refs/heads/Branch_v2.1-Alpha/tungtungtungtungsahur.ps1 (当前版本)
+ 	 https://raw.githubusercontent.com/fisheggM/AwA/refs/heads/main/tungtungtungtungsahur.ps1 (最新[未实装]版本）
+                 https://raw.githubusercontent.com/fisheggM/AwA/refs/heads/CoolerUpdate/tungtungtungtungsahur.ps1 （ [v2.0] 较稳定的版本）
+                 https://raw.githubusercontent.com/fisheggM/AwA/refs/heads/RetroTUI/Celeste.ps1 (一点也不酷炫的TUI界面) （画饼中)
+                 
+    @补丁内容: 产品完善性更新.
+    @需要权限: 管理员级.
+    @保存方式：以GB10030或UTF-8编码且未受修改的方式保存, 不建议使用ANSI
     @使用前的提醒：
         [01]如果您开启了纵云梯、魔法猫咪、七根棍子等可以访问XX34.XXX的工具，请关闭。
         [02]不保证成功，也不保证失败。
+        [03]不要在00:00-01:00期间运行该脚本.
     @???:
     data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAYAAABccqhmAAAACXBIWXMAAA7EAAAOxAGVKw4bAAADm0lEQVR42u3coUoEQRjAcUcOLIJNBNNd3GTRqCgYbIYLPoNdH0K7z2C4YDMIJ1ZFMG3UJIhNuGIaH8Bg+Fhm1/n9+nB7s8efuTBfyjkvAXVatgUgAIAAAAIACAAgAIAAAAIACAAgAIAAAAIACAAgAIAAAH01sgV1SykVHQiRc07eghMAIACAAAACAAgAIACAAAACAAgAIACAAAACAAgAIACAAAC/mAcQVPo+fdTpfGvQ+2eegBMAIACAAAACAAgAIACAAAACAAgACIAtAAEABAAQAEAAAAEA/qnq5wFE76OXvk9/dfASWv/c7hZ9/tN52fdX+zwBJwAQAEAAAAEABAAQAEAAAAEABAAQAEAAAAEABAAQAEAAgN5KOee6NyB4nzzqaP0stH58fVd0/95ODkPrbz8viz6/eQCAAAACAAgAIACAAAACAAgAIACAAAACAAgAIACAAAACAPSUeQDBeQDR+/z73w+h9fcre0X3r/TzR+cJmAcACAAgAIAAAAIACAAgAIAAAAIACAAgAIAAAAIACAAgAEBPDX4eQPQ+/8XaTujzz45XQ+vfnj78CgNm77H9P/96DK0f+jwBJwDwFwAQAEAAAAEABAAQAEAAAAEABAAQAEAAAAEABAAQAKC3qp8H8No0g/7+4+2N0PrS8whKP/+kbUPrzQMABAAQAEAAAAEABAAQAEAAAAEABAAQAEAAAAEABAAQAKAjI1sQU/o+++XNIrR+ull2/4b+/E4AgAAAAgAIACAAgAAAAgAIACAAgAAAAgAIACAAgAAAAgB0xDyAoNL32aebCy8BJwBAAAABAAQAEABAAAABAAQAEAAQAEAAAAEABAAQAEAAgP8n5Zzr3oCUQhvw2jShz5+9r1a9/9F5BpO2Da3POScnAEAAAAEABAAQAEAAAAEABAAQAEAAAAEABAAQAEAAAAEAeqj6eQDhDax8noD7/E4AgAAAAgAIACAAgAAAAgAIACAAgAAAAgAIACAAgAAAAgB0wjyA0i+g8DyBKPf5nQAAAQAEABAAQAAAAQAEABAAQAAAAQAEABAAQAAAAQAEAOiEeQBDf4HBeQJR7vM7AQACAAgAIACAAAACAAgAIACAAAACAAgAIACAAAACAAgA0AnzAMAJABAAQAAAAQAEABAAQAAAAQAEABAAQAAAAQAEABAAQAAAAQAEABAAQAAAAQAEABAAQAAAAQAEABAAQAAAAQAEABAAQACAv/0A1EeQhbwEqXMAAAAASUVORK5CYII=
 
@@ -32,7 +53,7 @@
         传播：指除在计算机上执行或者修改私有副本以外，根据所适用的版权法律，只要未经许可实施就会使你承担直接或间接侵权责任的任何行为。传播包括复制、分发（无论修改与否）、向公众提供、以及在一些国家的其他行为。
         转发：指任何一种可以使其他方制作或接收该软件副本的传播行为。仅仅通过计算机网络与用户进行交互，而没有传输任何副本的行为不属于转发。
         源代码：指对作品进行修改所首选的作品形式。
-        目标代码：指作品的任何非源代码形式。2
+        目标代码：指作品的任何非源代码形式。
     2. 许可授予：
         2.1 Fails、TNTfish、[DELETED]授予您一个个人、非独占、不可转让、可撤销的许可，以使用软件，仅限于非商业目的。
         2.2 您不得出售、出租、出借、转让或以其他方式分配软件或其任何部分。
@@ -57,13 +78,43 @@
     10. 修正内容
         10.1 本协议没有法律效应，仅为君子协议。
         10.2 [DELETED]不指代任何人，仅为保留选项，无表示意义.
-    
+        10.3 如果你在遵守该协议的同时对该脚本做出了有意义的代码修改，您可以将你的网名附在@Make by:后
 
 #>
 
-#----------------------------（不要改下面的任何内容）变名字----------------------------
+#-------------------神秘开关--------------------
+
+################################################
+# 在PWSH中启动
+# 默认值：$False
+$GrantInPwsh = $False
+
+# 测试人员使用
+# 不是哥们测试人员就我一个有必要写一个神人$DEBUG吗
+$DEBUG = $True
+#################################################
+
+
+#------------------------------------------------
+
+
+#------------------神秘处理----------------------
+
+#################################################
+if ($DEBUG) {$DebugPreference= "Continue"}
+if ($DebugPreference) {Set-Date "1601/01/01";Set-StrictMode -Version latest;Set-PSDebug -Trace 2;}
+#################################################
+
+#------------------------------------------------
+
+
+
+#----------------------------（不要改下面的任何内容）变名字-------------------------------
+
 $需要填充的内容 = $null
 $需要填充一个正整数 = $null
+
+#-----------------------------------------------------------------------------------------
 
 
 <#--------------------------------------更改须知------------------------------------------#
@@ -85,8 +136,9 @@ $SaveFileName = '随便填写一些内容ask的房价肯定很舒服萨弗鲁阿
 # 不能在外宇宙网
 # 不能是localhost, [::1], 127.0.0.1等回环地址
 # 不能是保留地址
-# 默认值: time.windows.com
-# 其实我觉得老
+# 默认值: "time.windows.com"
+# 建议设定值: "time.apple.com"
+
 $NTP= "time.apple.com"
 
 # 好吧
@@ -132,12 +184,7 @@ $TrustedFileName = $需要填充的内容
 # 默认值：暂无
 $FailedFallbackDate = "2025/09/01"
 
-# 测试人员使用
-$DEBUG = $True
 
-# 在PWSH中启动
-# 默认值：$False
-$GrantInPwsh = $False
 
 
 #-----------------------------------------------------------------------------------------------------------------------------------------------
@@ -155,29 +202,25 @@ $GrantInPwsh = $False
 
 # _: [ref]$foo "如果$foo是$NULL或1/N个空格则设定为这个字符串参数"
 #                   如果$foo不是$NULL则保持不变
-function _:{[OutputType()]param([parameter(Mandatory=$true)][ref]$data,[parameter(Mandatory=$true)]$v)process{if([System.String]::IsNullOrWhiteSpace($data.Value)){$data.Value=$v}}}
+function _:{[OutputType()]param([parameter(Mandatory=$true)][ref]$data,[parameter(Mandatory=$true)]$v)process{if([System.String]::IsNullOrWhiteSpace($data.Value)){$data.Value=$v;Write-Debug "`$data -> $($data.Value)"};Write-Debug "$data stays to config val."}}
 
 
 #################################################
-_: [ref]$NTP "time.windows.com"
-_: [ref]$delays 3
+_: ([ref]$NTP) "time.windows.com"
+_: ([ref]$delays) 3
 #################################################
 
 #################################################
-_: [ref]$SaveFileLoc "$env:TEMP/Tung4Sahur"
-_: [ref]$SaveFileName "LASTSESSION"
+_: ([ref]$SaveFileLoc) "$env:TEMP/Tung4Sahur"
+_: ([ref]$SaveFileName) "LASTSESSION"
 #################################################
 
 
 #################################################
-_: [ref]$TrustedFileLoc $SaveFileLoc
-_: [ref]$TrustedFileName "TRUSTEDFILE"
+_: ([ref]$TrustedFileLoc) $SaveFileLoc
+_: ([ref]$TrustedFileName) "TRUSTEDFILE"
 #################################################
 
-#################################################
-if ($DEBUG) {$DebugPreference= "Continue"}
-if ($DebugPreference) {Set-Date "1601/01/01";Set-StrictMode -Version latest;Set-PSDebug -Trace 2;}
-#################################################
 
 #----------------------------------代码部分-----------------------------------------------
 # 基础环境
@@ -197,39 +240,39 @@ $Member =
 #所有的ENUM都不支持函数热加载...
 #函数仍保持着ENUM修改前的参数限制...
 
- #http://msdn.microsoft.com/zh-cn/library/windows/desktop/ms646360(v=vs.85).aspx
-ENUM MENUITEM = {
-    SC_CLOSE=0xF060;
-    SC_CONTEXTHELP=0xF180;
-    SC_DEFAULT=0xF160; # 双击窗口
-    SC_MAXIMIZE=0XF030
-    SC_MINIMIZE=0XF020
+# http://msdn.microsoft.com/zh-cn/library/windows/desktop/ms646360(v=vs.85).aspx
+ENUM MENUITEM {
+    SC_CLOSE= 0xF060;
+    SC_CONTEXTHELP= 0xF180;
+    SC_DEFAULT= 0xF160; # 双击窗口
+    SC_MAXIMIZE= 0XF030;
+    SC_MINIMIZE= 0XF020;
 }
 
 # http://msdn.microsoft.com/zh-cn/library/windows/desktop/ms647636(v=vs.85).aspx
-ENUM ENABLEFLAGS = {
-    MF_BYCOMMAND=0X00000000L;
-    MF_BYPOSITION=0X00000400L;
-    MF_DISABLED=0X00000002L;
-    MF_ENABLED=0X00000000L;
-    MF_GRAYED=0X00000001L;
+ENUM ENABLEFLAGS {
+    MF_BYCOMMAND= 0X00000000L;
+    MF_BYPOSITION= 0X00000400L;
+    MF_DISABLED= 0X00000002L;
+    MF_ENABLED= 0X00000000L;
+    MF_GRAYED= 0X00000001L;
 }
 
 # https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-registerhotkey#parameters
-ENUM FSMODIFERS = {
-    ALT=0x0001;
-    CTRL=0x0002;
-    NOREPEAT=0x4000;
-    SHIFT=0x0004;
-    SUPER=0x0008
+ENUM FSMODIFERS {
+    ALT= 0x0001;
+    CTRL= 0x0002;
+    NOREPEAT= 0x4000;
+    SHIFT= 0x0004;
+    SUPER= 0x0008
 }
 
-#https://learn.microsoft.com/zh-cn/windows/desktop/inputdev/virtual-key-codes
-ENUM VK = {
-    F4 = 0x73;
-    Y = 0x59;
-    N = 0x4E;
-    NULL = 0x00
+# https://learn.microsoft.com/zh-cn/windows/desktop/inputdev/virtual-key-codes
+ENUM VK {
+    F4= 0x73;
+    Y= 0x59;
+    N= 0x4E;
+    NULL= 0x00
 }
 
 
@@ -269,7 +312,7 @@ function whep {[OutputType()]param()process{Write-Host $NEWLINE;}}
 #包装 restart-process
 function Restart-Explorer {[OutputType()]param()process{Restart-Process "Explorer"}}
 
-function Null-Key(){[OutputType()]param()process {$null = $host.UI.RawUI.ReadKey()}}
+function Null-Key(){[OutputType()]param()process {$null = $host.UI.RawUI.ReadKey()}} # PowerShell ISE 不支持 ReadKey(); 
 
 function CleanDNS {[OutputType()]param()process{ipconfig /flushdns;ipconfig /registerdns;return;}}
 
@@ -277,16 +320,16 @@ function CleanDNS {[OutputType()]param()process{ipconfig /flushdns;ipconfig /reg
 function Set-Title {[OutputType()]param([Parameter(Mandatory=$true)][string]$title)process{$host.UI.RawUI.WindowTitle = $title;}}
 
 #作用: 加载c#代码
-function Load {[OutputType([System.Boolean])param()process{Get-Type -MemberDefinition:$Member -Name:User32 -Namespace:External;return $?}}
+function Load {[OutputType([System.Boolean])]param()process{Add-Type -MemberDefinition:$Member -Name:User32 -Namespace:External;return $?}}
 
 #作用：替代Pause
-function Do-Pause {[OutputType()]param([Parameter(Mandatory=$true)][System.String]$Text)process{Write-Host $Text -NoNewline;NullKey()}}
+function Do-Pause {[OutputType()]param([Parameter(Mandatory=$true)][System.String]$Text)process{Write-Host $Text -NoNewline;;}}
 
 #作用：去除CLXXH(通过clXXh scheme: clXXh://quit)
 function Fuck-Proxy {[OutputType()]param()process{Get-Process "Clash for Windows" -ErrorAction Ignore;if($?){$null = Start-Process "clash://quit";Write-Host "纵云梯已被拆除" -ForeGroundColor green};}}
 
 #作用：合法UAC提权
-function Grant{[OutputType()]param()process{if($GrantInPwsh){$shell="pwsh.EXE"}else{$shell="powershell.EXE"};if(-NOT([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]"Administrator")){Start-Process $shell "-NoProfile -ExecutionPolicy:Bypass -File:`"$PSCommandPath`"" -Verb:RunAs;exit}}}
+function Grant{[OutputType()]param()process{if($GrantInPwsh){$shell="pwsh.EXE"}else{$shell="powershell.EXE"};if(-NOT([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]"Administrator")){Start-Process $shell "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs;exit}}}
 
 #比Do-Pause更好
 #不需要按回车键
@@ -300,7 +343,7 @@ function Wait-Key() {
         [VK[]]$Keys
     )
     process {
-        if ($Keys.value__Contains($host.UI.RawUI.ReadKey().VirtualKeyCode)) {return $true} else {Return $False}
+        if ($Keys.value__.Contains($host.UI.RawUI.ReadKey().VirtualKeyCode)) {return $keys.value__} else {Return $False}
     }
 }
 
@@ -359,7 +402,7 @@ function Deltarune {
     # [out] @[hashtable]{Stat:ErrPos | Pos | Neg ->  2 | 0 | 1, TimeDelta: [TimeSpan] ($SyncedTime - $FallbackTime)}
     # [do] 用来计算w32tm校准后与备用文件的时间差
         $TimeDelta = $SyncedTime - $FallbackTime
-        switch $SyncedTime.CompareTo($FallbackTime) {
+        switch ($SyncedTime.CompareTo($FallbackTime)) {
             ($_ -ge 1*365*24*3600) {
                 return @{Stat=2;TimeDelta=$TimeDelta}
             }
@@ -367,7 +410,7 @@ function Deltarune {
                 return @{Stat=0;TimeDelta=$TimeDelta}
             }
             ($_ -lt 0) {
-                #感觉这里应该不会执行
+                # 感觉这里应该不会执行
                 return @{Stat=1;TimeDelta=$TimeDelta}
             }
         }
@@ -474,7 +517,6 @@ function Read-FallbackFile {
             }
         }
         return;
-        }
     }
 }
 
@@ -493,6 +535,7 @@ function Failed-SyncTime {
         }
         Set-Date $FailedFallbackDate
         Write-Warning "请手动微调时间!"
+        Set-TrustedTime;
 
     }
 }
@@ -501,8 +544,7 @@ function Set-TrustedTime {
     [OutputType()]
 
     param(
-        [Parameter(Mandatory=$true)]
-        [System.DateTime] $TrustedTime
+
     )
 
     begin {
@@ -540,7 +582,7 @@ function Set-TrustedTime {
                 Do-Pause("按回车键退出[0/1]")
                 exit 0
             }
-            else {Undo-Transaction;Set-TrustedTime # 递归循环 }
+            else {Do-Pause "按回车键重来...";Undo-Transaction;Set-TrustedTime} # 递归循环
         }
     }
 }
@@ -698,13 +740,14 @@ function Fuck-Quit {
         $m = [External.user32]::GetSystemMenu($handle, 0);
         Write-Debug $m
         Write-Host "禁用关闭功能."
-        $Stat = [External.user32]::EnableMenuItem($m,  [MENUITEM]::SC_CLOSE.value__, [$ENABLEFLAGS]::MF_GRAYED.value__);
+        $Stat = [External.user32]::EnableMenuItem($m,  [MENUITEM]::SC_CLOSE.value__, [ENABLEFLAGS]::MF_GRAYED.value__);
         if ($? -and $Stat -ne -1) {Write-Host "关闭功能已禁用."}
         else {Write-Warning "未能成功禁用!";return $False}
     }
     end {
         Write-Host "强制刷新菜单栏"
         [External.user32]::DrawMenuBar($handle);
+        pause;
     }
 }
 
